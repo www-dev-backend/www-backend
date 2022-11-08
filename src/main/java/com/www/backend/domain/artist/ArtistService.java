@@ -19,6 +19,6 @@ public class ArtistService {
     public SuccessResponse createArtist(CreateArtistParameter createArtistParameter) {
         Artist artist = artistRepository.save(artistMapper.toEntity(createArtistParameter));
 
-        return new SuccessResponse(artist);
+        return new SuccessResponse(artistMapper.toDto(artist));
     }
 }
