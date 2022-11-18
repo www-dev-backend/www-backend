@@ -60,4 +60,11 @@ public class ArtistService {
 
         return new SuccessResponse(artistMapper.toDto(artist));
     }
+
+    public void deleteArtist(long artistId) {
+        artistRepository.findById(artistId)
+                .orElseThrow(() -> new IllegalArgumentException("ID와 일치하는 아티스트가 없습니다."));
+
+        artistRepository.deleteById(artistId);
+    }
 }

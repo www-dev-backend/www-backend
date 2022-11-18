@@ -7,6 +7,7 @@ import com.www.backend.domain.artist.dto.SearchArtistRequest;
 import com.www.backend.domain.artist.dto.UpdateArtistParameter;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,5 +41,11 @@ public class ArtistController {
     public ResponseEntity<SuccessResponse> updateArtist(@PathVariable long artistId,
                                                         @RequestBody UpdateArtistParameter parameter) {
         return ResponseEntity.ok(artistService.updateArtist(artistId, parameter));
+    }
+
+    @DeleteMapping("/{artistId}")
+    public ResponseEntity<Void> deleteArtist(@PathVariable long artistId) {
+        artistService.deleteArtist(artistId);
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 }
