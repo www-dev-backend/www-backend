@@ -1,4 +1,4 @@
-package com.www.backend.common.Enum;
+package com.www.backend.domain.genre;
 
 public enum EGenre {
     VISUAL("visual"),

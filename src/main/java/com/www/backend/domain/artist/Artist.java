@@ -1,22 +1,25 @@
 package com.www.backend.domain.artist;
 
+import com.sun.xml.bind.v2.TODO;
 import com.www.backend.common.entity.BaseTimeEntity;
+import com.www.backend.domain.genre.Genre;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.*;
 
 
 @Entity
 @Getter @Setter
+@SQLDelete(sql = "update artists set deleted_at=current_timestamp where id=?")
 @Table(name = "artists")
-
 public class Artist extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // TODO: 장르는 ENUM 타입으로 수정해야 함
+//     TODO: 장르는 ENUM 타입으로 수정해야 함
     private String genre;
 
     private String name;
@@ -30,8 +33,4 @@ public class Artist extends BaseTimeEntity {
     private String bio;
 
     private String profileImage;
-
-//    @OneToMany
-//    JoinColumn(name = "artist_id")
-//    private List<Image> profileImages;
 }

@@ -1,4 +1,4 @@
-package com.www.backend.domain.genre;
+package com.www.backend.domain.asset;
 
 import com.www.backend.common.entity.BaseTimeEntity;
 import lombok.Getter;
@@ -8,12 +8,15 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter
-@Table(name = "genres")
-public class Genre extends BaseTimeEntity {
+@Table(name = "assets")
+public class Asset extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String name;
+    @Column
+    private String type;
+
+    @Column
+    private String url;
 }

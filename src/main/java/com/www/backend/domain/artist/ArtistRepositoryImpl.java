@@ -14,6 +14,8 @@ import java.util.List;
 
 import static com.www.backend.domain.artist.QArtist.artist;
 
+//import static com.www.backend.domain.artist.QArtist.artist;
+
 public class ArtistRepositoryImpl extends BaseRepositoryImpl<Artist, Long> implements ArtistRepository {
 
     public ArtistRepositoryImpl(EntityManager em) {
