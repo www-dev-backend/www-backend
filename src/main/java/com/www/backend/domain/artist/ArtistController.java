@@ -39,7 +39,7 @@ public class ArtistController {
 
     @PutMapping("/{artistId}")
     public ResponseEntity<SuccessResponse> updateArtist(@PathVariable long artistId,
-                                                        @RequestBody UpdateArtistParameter parameter) {
+                                                        @Valid @RequestBody UpdateArtistParameter parameter) {
         return ResponseEntity.ok(artistService.updateArtist(artistId, parameter));
     }
 

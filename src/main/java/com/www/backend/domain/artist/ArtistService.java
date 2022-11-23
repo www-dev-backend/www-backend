@@ -54,13 +54,14 @@ public class ArtistService {
         return new PaginationResponse(artists.getContent(), PaginationMeta.of(artists));
     }
 
-    public SuccessResponse getArtistDetail(Long artistId) {
+    public SuccessResponse getArtistDetail(long artistId) {
         Artist artist = artistRepository.findById(artistId)
                 .orElseThrow(() -> new IllegalArgumentException("ID와 일치하는 아티스트가 없습니다."));
 
         return new SuccessResponse(artistMapper.toDto(artist));
     }
 
+    @Transactional
     public void deleteArtist(long artistId) {
         artistRepository.findById(artistId)
                 .orElseThrow(() -> new IllegalArgumentException("ID와 일치하는 아티스트가 없습니다."));
