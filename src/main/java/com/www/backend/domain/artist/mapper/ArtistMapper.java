@@ -13,5 +13,7 @@ public interface ArtistMapper {
 
     Artist toEntity(CreateArtistParameter createArtistParameter);
 
+    Artist toEntity(ArtistDto artistDto);
+
     void updateToEntity(UpdateArtistParameter updateArtistParameter, @MappingTarget Artist artist);
 }

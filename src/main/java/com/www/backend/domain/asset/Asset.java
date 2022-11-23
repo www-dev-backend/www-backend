@@ -1,8 +1,10 @@
 package com.www.backend.domain.asset;
 
 import com.www.backend.common.entity.BaseTimeEntity;
+import com.www.backend.domain.artist.Artist;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
 
@@ -19,4 +21,10 @@ public class Asset extends BaseTimeEntity {
 
     @Column
     private String url;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "artist_id")
+    @Comment("FK: 아티스트 아이디")
+    private Artist artist;
+
 }

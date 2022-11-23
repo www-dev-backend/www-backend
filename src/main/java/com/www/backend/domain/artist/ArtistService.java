@@ -38,9 +38,10 @@ public class ArtistService {
 
     @Transactional
     public SuccessResponse updateArtist(long artistId, UpdateArtistParameter updateArtistParameter) {
-        Artist artist = artistRepository.findById(artistId)
+        ArtistDto artistDto = artistRepository.findById(artistId)
                 .orElseThrow(() -> new IllegalArgumentException("ID와 일치하는 아티스트가 없습니다."));
 
+        Artist artist = artistMapper.toEntity(artistDto);
         artistMapper.updateToEntity(updateArtistParameter, artist);
         Artist updatedArtist = artistRepository.save(artist);
         return new SuccessResponse(updatedArtist);
@@ -55,10 +56,10 @@ public class ArtistService {
     }
 
     public SuccessResponse getArtistDetail(long artistId) {
-        Artist artist = artistRepository.findById(artistId)
+        ArtistDto artist = artistRepository.findById(artistId)
                 .orElseThrow(() -> new IllegalArgumentException("ID와 일치하는 아티스트가 없습니다."));
 
-        return new SuccessResponse(artistMapper.toDto(artist));
+        return new SuccessResponse(artist);
     }
 
     @Transactional
