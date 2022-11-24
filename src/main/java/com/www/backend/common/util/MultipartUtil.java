@@ -5,7 +5,7 @@ import org.springframework.util.StringUtils;
 import java.util.UUID;
 
 public final class MultipartUtil {
-    private static final String BASE_DIR = "assets";
+    private static final String BASE_DIR = "images";
 
     public static String getLocalHomeDirectory() {
         return System.getProperty("user.home");
@@ -23,7 +23,19 @@ public final class MultipartUtil {
         return null;
     }
 
-    public static String createPath(String fileId, String format) {
-        return String.format("%s/%s.%s", BASE_DIR, fileId, format);
+    public static String createPath(String directory, String fileId, String format) {
+        return String.format("%s/%s.%s", directory, fileId, format);
+    }
+
+    public static String createBaseDirectory(String format) {
+        String dir = "";
+        switch (format) {
+            case "jpeg", "jpg, png" -> dir = "images";
+            case "mp4" -> dir = "videos";
+            default -> {
+            }
+        }
+
+        return dir;
     }
 }

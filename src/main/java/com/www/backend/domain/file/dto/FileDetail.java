@@ -21,12 +21,13 @@ public class FileDetail {
     public static FileDetail multipartOf(MultipartFile multipartFile) {
         final String fileId = MultipartUtil.createFileId();
         final String format = MultipartUtil.getFormat(multipartFile.getContentType());
+        final String directory = MultipartUtil.createBaseDirectory(format);
 
         return FileDetail.builder()
                 .id(fileId)
                 .name(multipartFile.getOriginalFilename())
                 .format(format)
-                .path(MultipartUtil.createPath(fileId, format))
+                .path(MultipartUtil.createPath(directory, fileId, format))
                 .bytes(multipartFile.getSize())
                 .build();
     }

@@ -16,8 +16,7 @@ public class AmazonS3Utils {
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
-    @Autowired
-    AmazonS3Client amazonS3Client;
+    private final AmazonS3Client amazonS3Client;
 
     public String store(String fullPath, MultipartFile multipartFile) {
         try{
@@ -28,7 +27,7 @@ public class AmazonS3Utils {
             amazonS3Client.putObject(new PutObjectRequest(bucket, fullPath, multipartFile.getInputStream(), metadata)
                     .withCannedAcl(CannedAccessControlList.PublicRead));
 
-            return amazonS3Client.getUrl(bucket, multipartFile.getOriginalFilename()).toString();
+            return amazonS3Client.getUrl(bucket, fullPath).toString();
         } catch(Exception e) {
             throw new RuntimeException(e);
         }

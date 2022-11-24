@@ -3,6 +3,7 @@ package com.www.backend.domain.file;
 import com.www.backend.common.response.SuccessResponse;
 import com.www.backend.common.util.AmazonS3Utils;
 import com.www.backend.domain.file.dto.FileDetail;
+import com.www.backend.domain.file.dto.UploadMeta;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,7 +15,7 @@ public class FileService {
 
     public SuccessResponse save(MultipartFile file) {
         FileDetail fileDetail = FileDetail.multipartOf(file);
-        amazonS3Utils.store(fileDetail.getPath(), file);
-        return new SuccessResponse(fileDetail);
+        String url = amazonS3Utils.store(fileDetail.getPath(), file);
+        return new SuccessResponse(new UploadMeta(url, fileDetail));
     }
 }
