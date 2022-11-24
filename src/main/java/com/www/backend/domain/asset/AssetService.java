@@ -3,7 +3,6 @@ package com.www.backend.domain.asset;
 import com.www.backend.common.response.SuccessResponse;
 import com.www.backend.domain.artist.Artist;
 import com.www.backend.domain.artist.ArtistRepository;
-import com.www.backend.domain.artist.dto.ArtistDto;
 import com.www.backend.domain.asset.dto.AssetDto;
 import com.www.backend.domain.asset.dto.CreateAssetParameter;
 import com.www.backend.domain.asset.dto.UpdateAssetParameter;

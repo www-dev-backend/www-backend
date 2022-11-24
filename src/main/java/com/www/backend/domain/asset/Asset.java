@@ -1,5 +1,6 @@
 package com.www.backend.domain.asset;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.www.backend.common.entity.BaseTimeEntity;
 import com.www.backend.domain.artist.Artist;
 import lombok.Getter;
@@ -22,6 +23,8 @@ public class Asset extends BaseTimeEntity {
     @Column
     private String url;
 
+
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "artist_id")
     @Comment("FK: 아티스트 아이디")

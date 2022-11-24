@@ -12,13 +12,11 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.www.backend.domain.artist.QArtist.artist;
-import static com.www.backend.domain.asset.QAsset.asset;
 
 public class ArtistRepositoryImpl extends BaseRepositoryImpl<Artist, Long> implements ArtistRepository {
 
     public ArtistRepositoryImpl(EntityManager em) {
         super(Artist.class, em);
-//        this.support = new ArtistSupport(notice);
     }
 
     @Override
