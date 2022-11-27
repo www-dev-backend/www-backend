@@ -28,6 +28,11 @@ public class ArtistController {
         return ResponseEntity.ok(artistService.getArtists());
     }
 
+    @GetMapping("/detail")
+    public ResponseEntity<SuccessResponse> getArtistByCode(@RequestHeader String code) {
+        return ResponseEntity.ok(artistService.getArtistByCode(code));
+    }
+
     @GetMapping("/pagination")
     public ResponseEntity<PaginationResponse> getArtistsByPagination(@RequestParam(defaultValue = "0", required = false) int page,
                                                                      @RequestParam(defaultValue = "10", required = false) int take) {

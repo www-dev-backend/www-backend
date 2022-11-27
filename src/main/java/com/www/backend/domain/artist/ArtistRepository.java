@@ -14,4 +14,6 @@ public interface ArtistRepository extends BaseRepository<Artist, Long> {
     Optional<ArtistDto> findById(long assetId);
 
     Optional<Artist> findByEmail(String email);
+
+    Optional<Artist> findByCode(String code);
 }

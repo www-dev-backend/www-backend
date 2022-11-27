@@ -74,4 +74,14 @@ public class ArtistRepositoryImpl extends BaseRepositoryImpl<Artist, Long> imple
                     .fetchOne()
         );
     }
+
+    @Override
+    public Optional<Artist> findByCode(String code) {
+        return Optional.ofNullable(
+                query.selectFrom(artist)
+                        .where(artist.code.eq(code),
+                                artist.deletedAt.isNull())
+                        .fetchOne()
+        );
+    }
 }

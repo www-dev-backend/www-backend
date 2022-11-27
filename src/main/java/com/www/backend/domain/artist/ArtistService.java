@@ -74,6 +74,13 @@ public class ArtistService {
         return new SuccessResponse(new ArtistWrapperDto(artist, assets));
     }
 
+    public SuccessResponse getArtistByCode(String code) {
+        Artist artist = artistRepository.findByCode(code)
+                .orElseThrow(() -> new IllegalArgumentException("Code와 일치하는 아티스트가 없습니다."));
+
+        return new SuccessResponse(artistMapper.toDto(artist));
+    }
+
     @Transactional
     public void deleteArtist(long artistId) {
         artistRepository.findById(artistId)
