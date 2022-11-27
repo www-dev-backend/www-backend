@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 public class ArtistService {
     private final ArtistRepository artistRepository;
     private final ArtistMapper artistMapper;
-
     private final AssetRepository assetRepository;
 
     @Transactional
