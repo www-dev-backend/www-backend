@@ -1,6 +1,7 @@
 package com.www.backend.domain.artwork;
 
 import com.www.backend.common.entity.BaseTimeEntity;
+import com.www.backend.domain.artist.Artist;
 import com.www.backend.domain.asset.Asset;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +26,15 @@ public class Artwork extends BaseTimeEntity {
     @Column(length = 700)
     private String description;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "artist_id")
+    private Artist artist;
+
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "artwork_id")
     private List<Asset> assets = new ArrayList<>();
+
+    public void registerArtist(Artist artist) {
+        this.artist = artist;
+    }
 }

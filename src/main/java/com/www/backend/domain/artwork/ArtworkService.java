@@ -1,15 +1,13 @@
 package com.www.backend.domain.artwork;
 
 import com.www.backend.common.response.SuccessResponse;
+import com.www.backend.domain.artist.Artist;
 import com.www.backend.domain.artist.ArtistRepository;
 import com.www.backend.domain.artist.dto.ArtistDto;
-import com.www.backend.domain.artist.mapper.ArtistMapper;
 import com.www.backend.domain.artwork.dto.CreateArtworkParameter;
 import com.www.backend.domain.artwork.dto.UpdateArtworkParameter;
 import com.www.backend.domain.artwork.mapper.ArtworkMapper;
-import com.www.backend.domain.asset.Asset;
 import com.www.backend.domain.asset.AssetRepository;
-import com.www.backend.domain.asset.mapper.AssetMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,16 +20,16 @@ import java.util.Optional;
 public class ArtworkService {
     private final ArtworkRepository artworkRepository;
     private final ArtworkMapper artworkMapper;
-
     private final AssetRepository assetRepository;
-    private final AssetMapper assetMapper;
-
     private final ArtistRepository artistRepository;
-    private ArtistMapper artistMapper;
 
     @Transactional
-    public SuccessResponse createArtwork(CreateArtworkParameter parameter){
+    public SuccessResponse createArtwork(String code, CreateArtworkParameter parameter){
+        Artist artist = artistRepository.findByCode(code)
+                .orElseThrow(() -> new IllegalArgumentException("Code와 일치하는 아티스트가 없습니다."));
+
         Artwork artwork = artworkRepository.save(artworkMapper.toEntity(parameter));
+        artwork.registerArtist(artist);
 
         return new SuccessResponse(artworkMapper.toDto(artwork));
     }

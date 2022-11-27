@@ -17,8 +17,9 @@ public class ArtworkController {
     private final ArtworkService artworkService;
 
     @PostMapping
-    public ResponseEntity<SuccessResponse> registerArtwork(@Valid @RequestBody CreateArtworkParameter parameter) {
-        return ResponseEntity.ok(artworkService.createArtwork(parameter));
+    public ResponseEntity<SuccessResponse> registerArtwork(@RequestHeader String code,
+                                                           @Valid @RequestBody CreateArtworkParameter parameter) {
+        return ResponseEntity.ok(artworkService.createArtwork(code, parameter));
     }
 
     @GetMapping("/{artworkId}")
