@@ -31,6 +31,7 @@ public class ArtistService {
         // TODO: email 중복 조건 검사
 
         Artist artist = artistRepository.save(artistMapper.toEntity(createArtistParameter));
+        artist.createCode();
 
         return new SuccessResponse(artistMapper.toDto(artist));
     }

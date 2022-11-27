@@ -2,6 +2,7 @@ package com.www.backend.domain.artist;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.www.backend.common.entity.BaseTimeEntity;
+import com.www.backend.common.util.CodeUtils;
 import com.www.backend.domain.asset.Asset;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +22,9 @@ public class Artist extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//     TODO: 장르는 ENUM 타입으로 수정해야 함
+    private String code;
+
+    // TODO: 장르는 ENUM 타입으로 수정해야 함
     private String genre;
 
     private String name;
@@ -45,5 +48,12 @@ public class Artist extends BaseTimeEntity {
 
     public void add(Asset asset) {
         asset.setArtist(this);
+    }
+
+    public void createCode() {
+        String[] tokens = this.email.split("@");
+        String code = CodeUtils.generateCode(4);
+
+        this.code = tokens[0] + "_" + code;
     }
 }
