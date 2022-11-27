@@ -1,5 +1,6 @@
 package com.www.backend.domain.artist;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.www.backend.common.entity.BaseTimeEntity;
 import com.www.backend.domain.asset.Asset;
 import lombok.Getter;
@@ -7,6 +8,8 @@ import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -32,6 +35,11 @@ public class Artist extends BaseTimeEntity {
     private String bio;
 
     private String profileImage;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "artist_id", referencedColumnName = "id")
+    private List<Asset> assets = new ArrayList<>();
 
     public void add(Asset asset) {
         asset.setArtist(this);

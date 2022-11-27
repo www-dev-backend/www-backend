@@ -28,10 +28,7 @@ public class ArtistRepositoryImpl extends BaseRepositoryImpl<Artist, Long> imple
                         artist.email,
                         artist.instagramAccount,
                         artist.description,
-                        artist.bio,
-//                        artist.assets,
-                        artist.createdAt,
-                        artist.updatedAt
+                        artist.bio
                 ))
                 .from(artist)
                 .offset(pageable.getOffset())
@@ -57,13 +54,10 @@ public class ArtistRepositoryImpl extends BaseRepositoryImpl<Artist, Long> imple
                             artist.email,
                             artist.instagramAccount,
                             artist.description,
-                            artist.bio,
-                            artist.createdAt,
-                            artist.updatedAt
+                            artist.bio
                     ))
                     .from(artist)
                     .where(artist.id.eq(assetId), artist.deletedAt.isNull())
-                    .orderBy(artist.createdAt.desc())
                     .fetchOne()
         );
     }

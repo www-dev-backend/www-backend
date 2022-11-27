@@ -5,6 +5,7 @@ import com.www.backend.common.response.SuccessResponse;
 import com.www.backend.domain.artist.dto.CreateArtistParameter;
 import com.www.backend.domain.artist.dto.SearchArtistRequest;
 import com.www.backend.domain.artist.dto.UpdateArtistParameter;
+import com.www.backend.domain.asset.AssetService;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;

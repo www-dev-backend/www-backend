@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileService {
     private final AmazonS3Utils amazonS3Utils;
 
-    public SuccessResponse save(MultipartFile file) {
+    public SuccessResponse uploadAsset(MultipartFile file) {
         FileDetail fileDetail = FileDetail.multipartOf(file);
         String url = amazonS3Utils.store(fileDetail.getPath(), file);
         return new SuccessResponse(new UploadMeta(url, fileDetail));

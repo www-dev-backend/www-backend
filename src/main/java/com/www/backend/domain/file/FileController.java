@@ -15,7 +15,6 @@ public class FileController {
     @PostMapping
     public ResponseEntity<SuccessResponse> upload(
             @RequestPart("file") MultipartFile multipartFile) {
-        return ResponseEntity.ok(fileService.save(multipartFile));
+        return ResponseEntity.ok(fileService.uploadAsset(multipartFile));
     }
-
 }

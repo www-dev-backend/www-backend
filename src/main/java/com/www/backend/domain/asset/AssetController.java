@@ -27,8 +27,8 @@ public class AssetController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<SuccessResponse> getAssets() {
-        return ResponseEntity.ok(assetService.getAssets());
+    public ResponseEntity<SuccessResponse> getAssetsWithArtist() {
+        return ResponseEntity.ok(assetService.getAssetsWithArtist());
     }
 
     @PutMapping("/{assetId}")

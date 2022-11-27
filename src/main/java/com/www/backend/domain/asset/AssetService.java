@@ -4,6 +4,7 @@ import com.www.backend.common.response.SuccessResponse;
 import com.www.backend.domain.artist.Artist;
 import com.www.backend.domain.artist.ArtistRepository;
 import com.www.backend.domain.asset.dto.AssetDto;
+import com.www.backend.domain.asset.dto.AssetRawDto;
 import com.www.backend.domain.asset.dto.CreateAssetParameter;
 import com.www.backend.domain.asset.dto.UpdateAssetParameter;
 import com.www.backend.domain.asset.mapper.AssetMapper;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -42,14 +44,21 @@ public class AssetService {
         return new SuccessResponse(updatedAsset);
     }
 
-    public SuccessResponse getAssets() {
+    public SuccessResponse getAssetsWithArtist() {
         List<Asset> assets = assetRepository.findAll();
 
         return new SuccessResponse(assets);
     }
 
+    public SuccessResponse getAssets(long artistId) {
+        List<AssetRawDto> assets = assetRepository.findAllByArtistId(artistId)
+                .orElseThrow(() -> new IllegalArgumentException("일치하는 데이터가 없습니다."));
+
+        return new SuccessResponse(assets);
+    }
+
     public SuccessResponse getAssetsByArtistId(long artistId) {
-        List<AssetDto> assets = assetRepository.findAllByArtistId(artistId)
+        List<AssetRawDto> assets = assetRepository.findAllByArtistId(artistId)
                 .orElseThrow(() -> new IllegalArgumentException("일치하는 데이터가 없습니다."));
 
         return new SuccessResponse(assets);

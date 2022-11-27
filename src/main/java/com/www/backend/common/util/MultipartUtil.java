@@ -30,7 +30,7 @@ public final class MultipartUtil {
     public static String createBaseDirectory(String format) {
         String dir = "";
         switch (format) {
-            case "jpeg", "jpg, png" -> dir = "images";
+            case "jpeg", "jpg", "png", "gif" -> dir = "images";
             case "mp4" -> dir = "videos";
             default -> {
             }
