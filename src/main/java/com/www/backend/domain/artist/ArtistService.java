@@ -8,15 +8,14 @@ import com.www.backend.domain.artist.dto.*;
 import com.www.backend.domain.artist.mapper.ArtistMapper;
 import com.www.backend.domain.asset.AssetRepository;
 import com.www.backend.domain.asset.dto.AssetRawDto;
-import com.www.backend.domain.asset.mapper.AssetMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +25,6 @@ public class ArtistService {
     private final ArtistMapper artistMapper;
 
     private final AssetRepository assetRepository;
-    private final AssetMapper assetMapper;
 
     @Transactional
     public SuccessResponse createArtist(CreateArtistParameter createArtistParameter) {
@@ -48,12 +46,22 @@ public class ArtistService {
         return new SuccessResponse(updatedArtist);
     }
 
-    public PaginationResponse getArtists(SearchArtistRequest searchArtistRequest) {
+    public PaginationResponse getArtistsByPagination(SearchArtistRequest searchArtistRequest) {
         Pageable pageable = PageableUtil.of(searchArtistRequest.getPage(), searchArtistRequest.getTake());
 
         Page<ArtistDto> artists = artistRepository.searchArtists(pageable);
 
         return new PaginationResponse(artists.getContent(), PaginationMeta.of(artists));
+    }
+
+    public SuccessResponse getArtists() {
+        List<Artist> all = artistRepository.findAll();
+
+        List<ArtistDto> artists = all.stream()
+                .map(artistMapper::toDto)
+                .collect(Collectors.toList());
+
+        return new SuccessResponse(artists);
     }
 
     public SuccessResponse getArtistDetail(long artistId) {

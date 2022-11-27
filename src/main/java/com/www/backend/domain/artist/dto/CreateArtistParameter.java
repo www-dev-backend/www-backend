@@ -15,17 +15,17 @@ public class CreateArtistParameter {
     @NotEmpty()
     private String name;
 
+    @NotBlank
+    private String nickname;
+
     @Email()
     @NotEmpty()
     private String email;
 
-    @NotBlank()
     private String instagramAccount;
 
-    @NotBlank()
     private String description;
 
-    @NotBlank()
     private String bio;
 
     private String profileImage;

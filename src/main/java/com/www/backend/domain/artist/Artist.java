@@ -26,6 +26,8 @@ public class Artist extends BaseTimeEntity {
 
     private String name;
 
+    private String nickname;
+
     private String email;
 
     private String instagramAccount;

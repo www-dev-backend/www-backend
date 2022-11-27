@@ -17,6 +17,8 @@ public class ArtistDto {
 
     private String name;
 
+    private String nickname;
+
     private String email;
 
     private String instagramAccount;
@@ -27,10 +29,11 @@ public class ArtistDto {
 
 
     @QueryProjection
-    public ArtistDto(Long id, String genre, String name, String email, String instagramAccount, String description, String bio) {
+    public ArtistDto(Long id, String genre, String name, String nickname, String email, String instagramAccount, String description, String bio) {
         this.id = id;
         this.genre = genre;
         this.name = name;
+        this.nickname = nickname;
         this.email = email;
         this.instagramAccount = instagramAccount;
         this.description = description;

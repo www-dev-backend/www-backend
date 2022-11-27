@@ -5,9 +5,7 @@ import com.www.backend.common.response.SuccessResponse;
 import com.www.backend.domain.artist.dto.CreateArtistParameter;
 import com.www.backend.domain.artist.dto.SearchArtistRequest;
 import com.www.backend.domain.artist.dto.UpdateArtistParameter;
-import com.www.backend.domain.asset.AssetService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,11 +24,16 @@ public class ArtistController {
     }
 
     @GetMapping
-    public ResponseEntity<PaginationResponse> getArtists(@RequestParam(defaultValue = "0", required = false) int page,
-                                                         @RequestParam(defaultValue = "10", required = false) int take) {
+    public ResponseEntity<SuccessResponse> getArtists() {
+        return ResponseEntity.ok(artistService.getArtists());
+    }
+
+    @GetMapping("/pagination")
+    public ResponseEntity<PaginationResponse> getArtistsByPagination(@RequestParam(defaultValue = "0", required = false) int page,
+                                                                     @RequestParam(defaultValue = "10", required = false) int take) {
         SearchArtistRequest request = new SearchArtistRequest(page, take);
 
-        return ResponseEntity.ok(artistService.getArtists(request));
+        return ResponseEntity.ok(artistService.getArtistsByPagination(request));
     }
 
     @GetMapping("/{artistId}")

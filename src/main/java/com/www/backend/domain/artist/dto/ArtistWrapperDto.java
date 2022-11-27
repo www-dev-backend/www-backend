@@ -9,11 +9,29 @@ import java.util.List;
 
 @Getter @Setter
 public class ArtistWrapperDto {
-    private ArtistDto artist;
+    private Long id;
+
+    private String genre;
+
+    private String name;
+
+    private String email;
+
+    private String instagramAccount;
+
+    private String description;
+
+    private String bio;
     private List<AssetRawDto> assets;
 
     public ArtistWrapperDto(ArtistDto artist, List<AssetRawDto> assets) {
-        this.artist = artist;
+        this.id = artist.getId();
+        this.genre = artist.getGenre();
+        this.name = artist.getName();
+        this.email = artist.getEmail();
+        this.instagramAccount = artist.getInstagramAccount();
+        this.description = artist.getDescription();
+        this.bio = artist.getBio();
         this.assets = assets;
     }
 }
