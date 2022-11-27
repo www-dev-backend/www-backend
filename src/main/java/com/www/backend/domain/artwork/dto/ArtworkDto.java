@@ -1,6 +1,7 @@
 package com.www.backend.domain.artwork.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,4 +15,10 @@ public class ArtworkDto {
 
     @NotBlank
     private String description;
+
+    @QueryProjection
+    public ArtworkDto(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
 }

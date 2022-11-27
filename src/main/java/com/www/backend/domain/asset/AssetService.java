@@ -24,8 +24,8 @@ public class AssetService {
     private final AssetMapper assetMapper;
 
     @Transactional
-    public SuccessResponse createAsset(String email, CreateAssetParameter parameter) {
-        Artist artist = artistRepository.findByEmail(email)
+    public SuccessResponse createAsset(String code, CreateAssetParameter parameter) {
+        Artist artist = artistRepository.findByCode(code)
                 .orElseThrow(() -> new IllegalArgumentException("일치하는 이메일이 없습니다."));
         Asset asset = assetRepository.save(assetMapper.toEntity(parameter));
 

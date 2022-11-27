@@ -1,6 +1,7 @@
 package com.www.backend.domain.asset;
 
 import com.www.backend.common.response.SuccessResponse;
+import com.www.backend.domain.asset.dto.CreateAssetParameter;
 import com.www.backend.domain.asset.dto.CreateAssetWrapper;
 import com.www.backend.domain.asset.dto.UpdateAssetParameter;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +18,10 @@ public class AssetController {
     private final AssetService assetService;
 
     @PostMapping
-    public ResponseEntity<SuccessResponse> create(@Valid @RequestBody CreateAssetWrapper wrapper) {
-        return ResponseEntity.ok(assetService.createAsset(wrapper.getEmail(), wrapper.getAsset()));
+    public ResponseEntity<SuccessResponse> create(
+            @RequestHeader String code,
+            @Valid @RequestBody CreateAssetParameter parameter) {
+        return ResponseEntity.ok(assetService.createAsset(code, parameter));
     }
 
     @GetMapping

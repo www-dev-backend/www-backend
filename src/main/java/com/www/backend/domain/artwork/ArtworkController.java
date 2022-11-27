@@ -22,6 +22,11 @@ public class ArtworkController {
         return ResponseEntity.ok(artworkService.createArtwork(code, parameter));
     }
 
+    @GetMapping
+    public ResponseEntity<SuccessResponse> getArtworkByCode(@RequestHeader String code) {
+        return ResponseEntity.ok(artworkService.getArtworkDetailByCode(code));
+    }
+
     @GetMapping("/{artworkId}")
     public ResponseEntity<SuccessResponse> getArtworkDetail(@PathVariable long artworkId) {
         return ResponseEntity.ok(artworkService.getArtworkDetail(artworkId));
