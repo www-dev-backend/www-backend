@@ -20,9 +20,7 @@ import java.util.stream.Collectors;
 public class LoggingAspect {
     private static final Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
-    @Pointcut("within(com.www.backend.domain..*)"+
-    " || within(com.www.backend.domain.service..*)"+
-    " || within(com.www.backend.domain.controller..*)")
+    @Pointcut("execution(* com.www.backend.domain..*Controller.*(..))")
     public void onRequest() {}
 
     @Around("com.www.backend.domain.aop.LoggingAspect.onRequest()")
