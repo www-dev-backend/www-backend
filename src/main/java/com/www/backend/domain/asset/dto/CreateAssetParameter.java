@@ -8,6 +8,9 @@ import javax.validation.constraints.NotBlank;
 @Getter @Setter
 public class CreateAssetParameter {
     @NotBlank
+    private String genre;
+
+    @NotBlank
     private String type;
 
     @NotBlank

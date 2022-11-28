@@ -29,6 +29,11 @@ public class AssetController {
         return ResponseEntity.ok(assetService.getAssetsByArtistId(artistId));
     }
 
+    @GetMapping("/{genre}")
+    public ResponseEntity<SuccessResponse> getAssetsByGenre(@PathVariable String genre) {
+        return ResponseEntity.ok(assetService.getAssetsByGenre(genre));
+    }
+
     @GetMapping("/all")
     public ResponseEntity<SuccessResponse> getAssetsWithArtist() {
         return ResponseEntity.ok(assetService.getAssetsWithArtist());

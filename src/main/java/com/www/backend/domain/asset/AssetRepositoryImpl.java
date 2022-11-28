@@ -19,6 +19,7 @@ public class AssetRepositoryImpl extends BaseRepositoryImpl<Asset, Long> impleme
     public Optional<List<AssetRawDto>> findAllByArtistId(long artistId) {
         return Optional.ofNullable(
                 query.select(new QAssetRawDto(
+                        asset.genre,
                         asset.type,
                         asset.url
                 ))
@@ -26,6 +27,20 @@ public class AssetRepositoryImpl extends BaseRepositoryImpl<Asset, Long> impleme
                 .where(asset.artist.id.eq(artistId), asset.deletedAt.isNull())
                 .orderBy(asset.createdAt.desc())
                 .fetch()
+        );
+    }
+
+    @Override
+    public Optional<List<AssetRawDto>> findAssetsByGenre(String genre) {
+        return Optional.ofNullable(
+                query.select(new QAssetRawDto(
+                            asset.genre,
+                            asset.type,
+                            asset.url
+                    ))
+                    .from(asset)
+                    .where(asset.genre.eq(genre), asset.deletedAt.isNull())
+                    .fetch()
         );
     }
 }

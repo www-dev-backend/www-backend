@@ -11,4 +11,6 @@ import java.util.Optional;
 
 public interface AssetRepository extends BaseRepository<Asset, Long> {
     Optional<List<AssetRawDto>> findAllByArtistId(long artistId);
+
+    Optional<List<AssetRawDto>> findAssetsByGenre(String genre);
 }

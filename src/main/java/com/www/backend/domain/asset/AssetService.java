@@ -47,6 +47,17 @@ public class AssetService {
     public SuccessResponse getAssetsWithArtist() {
         List<Asset> assets = assetRepository.findAll();
 
+        List<AssetRawDto> data = assets.stream()
+                .map(assetMapper::toRawDto)
+                .collect(Collectors.toList());
+
+        return new SuccessResponse(data);
+    }
+
+    public SuccessResponse getAssetsByGenre(String genre) {
+        List<AssetRawDto> assets = assetRepository.findAssetsByGenre(genre)
+                .orElseThrow(() -> new IllegalArgumentException("장르와 일치하는 데이터가 없습니다."));
+
         return new SuccessResponse(assets);
     }
 

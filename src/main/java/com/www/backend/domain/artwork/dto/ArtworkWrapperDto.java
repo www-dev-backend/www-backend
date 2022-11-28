@@ -1,7 +1,6 @@
 package com.www.backend.domain.artwork.dto;
 
 import com.www.backend.domain.artist.dto.ArtistDto;
-import com.www.backend.domain.artwork.Artwork;
 import com.www.backend.domain.asset.dto.AssetRawDto;
 import lombok.Getter;
 import lombok.Setter;
