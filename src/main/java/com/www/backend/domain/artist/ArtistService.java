@@ -1,6 +1,7 @@
 package com.www.backend.domain.artist;
 
 import com.www.backend.common.dto.PaginationMeta;
+import com.www.backend.common.exceptions.EntityNotFoundException;
 import com.www.backend.common.response.PaginationResponse;
 import com.www.backend.common.response.SuccessResponse;
 import com.www.backend.common.util.PageableUtils;
@@ -43,7 +44,7 @@ public class ArtistService {
     @Transactional
     public SuccessResponse updateArtist(long artistId, UpdateArtistParameter updateArtistParameter) {
         ArtistDto artistDto = artistRepository.findById(artistId)
-                .orElseThrow(() -> new IllegalArgumentException("ID와 일치하는 아티스트가 없습니다."));
+                .orElseThrow(() -> new EntityNotFoundException());
 
         Artist artist = artistMapper.toEntity(artistDto);
         artistMapper.updateToEntity(updateArtistParameter, artist);
