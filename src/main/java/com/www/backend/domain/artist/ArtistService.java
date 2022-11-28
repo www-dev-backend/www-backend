@@ -44,7 +44,7 @@ public class ArtistService {
     @Transactional
     public SuccessResponse updateArtist(long artistId, UpdateArtistParameter updateArtistParameter) {
         ArtistDto artistDto = artistRepository.findById(artistId)
-                .orElseThrow(() -> new EntityNotFoundException());
+                .orElseThrow(() -> new EntityNotFoundException("요청한 ID와 일치하는 아티스트가 없습니다."));
 
         Artist artist = artistMapper.toEntity(artistDto);
         artistMapper.updateToEntity(updateArtistParameter, artist);
@@ -72,17 +72,17 @@ public class ArtistService {
 
     public SuccessResponse getArtistDetail(long artistId) {
         ArtistDto artist = artistRepository.findById(artistId)
-                .orElseThrow(() -> new IllegalArgumentException("ID와 일치하는 아티스트가 없습니다."));
+                .orElseThrow(() -> new EntityNotFoundException("요청한 ID와 일치하는 아티스트가 없습니다."));
 
         List<AssetRawDto> assets = assetRepository.findAllByArtistId(artistId)
-                .orElseThrow(() -> new IllegalArgumentException("ID와 일치하는 아티스트가 없습니다."));
+                .orElseThrow(() -> new EntityNotFoundException());
 
         return new SuccessResponse(new ArtistWrapperDto(artist, assets));
     }
 
     public SuccessResponse getArtistByCode(String code) {
         Artist artist = artistRepository.findByCode(code)
-                .orElseThrow(() -> new IllegalArgumentException("Code와 일치하는 아티스트가 없습니다."));
+                .orElseThrow(() -> new EntityNotFoundException());
 
         return new SuccessResponse(artistMapper.toDto(artist));
     }
@@ -90,7 +90,7 @@ public class ArtistService {
     @Transactional
     public void deleteArtist(long artistId) {
         artistRepository.findById(artistId)
-                .orElseThrow(() -> new IllegalArgumentException("ID와 일치하는 아티스트가 없습니다."));
+                .orElseThrow(() -> new EntityNotFoundException());
 
         artistRepository.deleteById(artistId);
     }
