@@ -36,7 +36,7 @@ public class ArtistService {
 
         Artist artist = artistRepository.save(artistMapper.toEntity(createArtistParameter));
         artist.createCode();
-k
+
         return new SuccessResponse(artistMapper.toDto(artist));
     }
 
