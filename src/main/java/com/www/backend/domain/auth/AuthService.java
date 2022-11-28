@@ -1,5 +1,6 @@
 package com.www.backend.domain.auth;
 
+import com.www.backend.common.exceptions.EntityNotFoundException;
 import com.www.backend.common.response.SuccessResponse;
 import com.www.backend.domain.artist.Artist;
 import com.www.backend.domain.artist.ArtistRepository;
@@ -20,7 +21,7 @@ public class AuthService {
 
     public SuccessResponse login(String code) {
         Artist artist = artistRepository.findByCode(code)
-                .orElseThrow(() -> new IllegalArgumentException("ID가 일치하는 아티스트가 없습니다."));
+                .orElseThrow(() -> new EntityNotFoundException("요청한 ID와 일치하는 아티스트가 없습니다."));
 
         return new SuccessResponse(artistMapper.toDto(artist));
     }
