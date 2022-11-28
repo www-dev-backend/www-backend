@@ -1,5 +1,6 @@
 package com.www.backend.domain.asset;
 
+import com.www.backend.common.exceptions.EntityNotFoundException;
 import com.www.backend.common.response.SuccessResponse;
 import com.www.backend.domain.artist.Artist;
 import com.www.backend.domain.artist.ArtistRepository;
@@ -26,7 +27,7 @@ public class AssetService {
     @Transactional
     public SuccessResponse createAsset(String code, CreateAssetParameter parameter) {
         Artist artist = artistRepository.findByCode(code)
-                .orElseThrow(() -> new IllegalArgumentException("일치하는 이메일이 없습니다."));
+                .orElseThrow(() -> new EntityNotFoundException("요청한 Code와 일치하는 아티스트가 없습니다."));
         Asset asset = assetRepository.save(assetMapper.toEntity(parameter));
 
         artist.add(asset);
@@ -37,7 +38,7 @@ public class AssetService {
     @Transactional
     public SuccessResponse updateAsset(long assetId, UpdateAssetParameter parameter){
         Asset asset = assetRepository.findById(assetId)
-                .orElseThrow(() -> new IllegalArgumentException("ID와 일치하는 에셋이 없습니다."));
+                .orElseThrow(() -> new EntityNotFoundException("요청한 ID와 일치하는 에셋이 없습니다."));
 
         assetMapper.updateToEntity(parameter, asset);
         Asset updatedAsset = assetRepository.save(asset);
@@ -56,28 +57,28 @@ public class AssetService {
 
     public SuccessResponse getAssetsByGenre(String genre) {
         List<AssetRawDto> assets = assetRepository.findAssetsByGenre(genre)
-                .orElseThrow(() -> new IllegalArgumentException("장르와 일치하는 데이터가 없습니다."));
+                .orElseThrow(() -> new EntityNotFoundException("요청한 장르와 일치하는 에셋이 없습니다."));
 
         return new SuccessResponse(assets);
     }
 
     public SuccessResponse getAssets(long artistId) {
         List<AssetRawDto> assets = assetRepository.findAllByArtistId(artistId)
-                .orElseThrow(() -> new IllegalArgumentException("일치하는 데이터가 없습니다."));
+                .orElseThrow(() -> new EntityNotFoundException("요청한 ArtistID와 일치하는 에셋이 없습니다."));
 
         return new SuccessResponse(assets);
     }
 
     public SuccessResponse getAssetsByArtistId(long artistId) {
         List<AssetRawDto> assets = assetRepository.findAllByArtistId(artistId)
-                .orElseThrow(() -> new IllegalArgumentException("일치하는 데이터가 없습니다."));
+                .orElseThrow(() -> new EntityNotFoundException("요청한 ArtistID와 일치하는 에셋이 없습니다."));
 
         return new SuccessResponse(assets);
     }
 
     public SuccessResponse getAssetDetail(long assetId){
         Asset asset = assetRepository.findById(assetId)
-                .orElseThrow(() -> new IllegalArgumentException("ID와 일치하는 에셋이 없습니다."));
+                .orElseThrow(() -> new EntityNotFoundException("요청한 ID와 일치하는 에셋이 없습니다."));
 
         return new SuccessResponse(asset);
     }
@@ -85,7 +86,7 @@ public class AssetService {
     @Transactional
     public void deleteAsset(long assetId){
         Asset asset = assetRepository.findById(assetId)
-                .orElseThrow(() -> new IllegalArgumentException("ID와 일치하는 에셋이 없습니다."));
+                .orElseThrow(() -> new EntityNotFoundException("요청한 ID와 일치하는 에셋이 없습니다."));
 
         assetRepository.delete(asset);
     }
