@@ -1,6 +1,6 @@
 package com.www.backend.domain.file.dto;
 
-import com.www.backend.common.util.MultipartUtil;
+import com.www.backend.common.util.MultipartUtils;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,15 +19,15 @@ public class FileDetail {
     private final LocalDateTime createdAt = LocalDateTime.now();
 
     public static FileDetail multipartOf(MultipartFile multipartFile) {
-        final String fileId = MultipartUtil.createFileId();
-        final String format = MultipartUtil.getFormat(multipartFile.getContentType());
-        final String directory = MultipartUtil.createBaseDirectory(format);
+        final String fileId = MultipartUtils.createFileId();
+        final String format = MultipartUtils.getFormat(multipartFile.getContentType());
+        final String directory = MultipartUtils.createBaseDirectory(format);
 
         return FileDetail.builder()
                 .id(fileId)
                 .name(multipartFile.getOriginalFilename())
                 .format(format)
-                .path(MultipartUtil.createPath(directory, fileId, format))
+                .path(MultipartUtils.createPath(directory, fileId, format))
                 .bytes(multipartFile.getSize())
                 .build();
     }

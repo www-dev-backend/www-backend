@@ -3,8 +3,9 @@ package com.www.backend.domain.artist;
 import com.www.backend.common.dto.PaginationMeta;
 import com.www.backend.common.response.PaginationResponse;
 import com.www.backend.common.response.SuccessResponse;
-import com.www.backend.common.util.PageableUtil;
+import com.www.backend.common.util.PageableUtils;
 import com.www.backend.domain.artist.dto.*;
+import com.www.backend.domain.artist.exceptions.DuplicateEmailException;
 import com.www.backend.domain.artist.mapper.ArtistMapper;
 import com.www.backend.domain.asset.AssetRepository;
 import com.www.backend.domain.asset.dto.AssetRawDto;
@@ -27,11 +28,15 @@ public class ArtistService {
 
     @Transactional
     public SuccessResponse createArtist(CreateArtistParameter createArtistParameter) {
-        // TODO: email 중복 조건 검사
+        boolean isExists = artistRepository.existsByEmail(createArtistParameter.getEmail());
+
+        if (isExists) {
+            throw new DuplicateEmailException("이미 등록된 이메일이 있습니다.");
+        }
 
         Artist artist = artistRepository.save(artistMapper.toEntity(createArtistParameter));
         artist.createCode();
-
+k
         return new SuccessResponse(artistMapper.toDto(artist));
     }
 
@@ -47,7 +52,7 @@ public class ArtistService {
     }
 
     public PaginationResponse getArtistsByPagination(SearchArtistRequest searchArtistRequest) {
-        Pageable pageable = PageableUtil.of(searchArtistRequest.getPage(), searchArtistRequest.getTake());
+        Pageable pageable = PageableUtils.of(searchArtistRequest.getPage(), searchArtistRequest.getTake());
 
         Page<ArtistDto> artists = artistRepository.searchArtists(pageable);
 

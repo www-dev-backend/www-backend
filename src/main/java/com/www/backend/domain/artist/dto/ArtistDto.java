@@ -6,8 +6,6 @@ import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @Getter @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ArtistDto {
@@ -21,7 +19,7 @@ public class ArtistDto {
 
     private String email;
 
-    private String instagramAccount;
+    private String contact;
 
     private String description;
 
@@ -29,13 +27,13 @@ public class ArtistDto {
 
 
     @QueryProjection
-    public ArtistDto(Long id, String genre, String name, String nickname, String email, String instagramAccount, String description, String bio) {
+    public ArtistDto(Long id, String genre, String name, String nickname, String email, String contact, String description, String bio) {
         this.id = id;
         this.genre = genre;
         this.name = name;
         this.nickname = nickname;
         this.email = email;
-        this.instagramAccount = instagramAccount;
+        this.contact = contact;
         this.description = description;
         this.bio = bio;
     }

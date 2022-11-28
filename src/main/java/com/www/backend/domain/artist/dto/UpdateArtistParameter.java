@@ -16,7 +16,7 @@ public class UpdateArtistParameter {
     @Email()
     private String email;
 
-    private String instagramAccount;
+    private String contact;
 
     private String description;
 

@@ -17,8 +17,7 @@ public class ArtistWrapperDto {
 
     private String email;
 
-    private String instagramAccount;
-
+    private String contact;
     private String description;
 
     private String bio;
@@ -29,7 +28,7 @@ public class ArtistWrapperDto {
         this.genre = artist.getGenre();
         this.name = artist.getName();
         this.email = artist.getEmail();
-        this.instagramAccount = artist.getInstagramAccount();
+        this.contact = artist.getContact();
         this.description = artist.getDescription();
         this.bio = artist.getBio();
         this.assets = assets;

@@ -4,7 +4,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.UUID;
 
-public final class MultipartUtil {
+public final class MultipartUtils {
     private static final String BASE_DIR = "images";
 
     public static String getLocalHomeDirectory() {

@@ -16,4 +16,6 @@ public interface ArtistRepository extends BaseRepository<Artist, Long> {
     Optional<Artist> findByEmail(String email);
 
     Optional<Artist> findByCode(String code);
+
+    boolean existsByEmail(String email);
 }

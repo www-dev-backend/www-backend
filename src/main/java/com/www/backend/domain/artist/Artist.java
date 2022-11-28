@@ -22,6 +22,7 @@ public class Artist extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String code;
 
     // TODO: 장르는 ENUM 타입으로 수정해야 함
@@ -31,9 +32,10 @@ public class Artist extends BaseTimeEntity {
 
     private String nickname;
 
+    @Column(unique = true)
     private String email;
 
-    private String instagramAccount;
+    private String contact;
 
     private String description;
 

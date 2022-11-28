@@ -27,7 +27,7 @@ public class ArtistRepositoryImpl extends BaseRepositoryImpl<Artist, Long> imple
                         artist.name,
                         artist.nickname,
                         artist.email,
-                        artist.instagramAccount,
+                        artist.contact,
                         artist.description,
                         artist.bio
                 ))
@@ -54,7 +54,7 @@ public class ArtistRepositoryImpl extends BaseRepositoryImpl<Artist, Long> imple
                             artist.name,
                             artist.nickname,
                             artist.email,
-                            artist.instagramAccount,
+                            artist.contact,
                             artist.description,
                             artist.bio
                     ))
@@ -83,5 +83,16 @@ public class ArtistRepositoryImpl extends BaseRepositoryImpl<Artist, Long> imple
                                 artist.deletedAt.isNull())
                         .fetchOne()
         );
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        Integer count = query
+                .selectOne()
+                .from(artist)
+                .where(artist.email.eq(email))
+                .fetchFirst();
+
+        return count != null;
     }
 }
