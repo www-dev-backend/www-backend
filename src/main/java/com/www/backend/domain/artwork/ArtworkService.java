@@ -45,8 +45,7 @@ public class ArtworkService {
                 .orElseThrow(() -> new EntityNotFoundException("요청한 ArtistID와 일치하는 아트워크가 없습니다."));
 
         artworkMapper.updateToEntity(parameter, artwork);
-        Artwork updatedArtwork = artworkRepository.save(artwork);
-        return new SuccessResponse(updatedArtwork);
+        return new SuccessResponse(artworkMapper.toDto(artwork));
     }
 
     public SuccessResponse getArtworkDetail(long artworkId) {
