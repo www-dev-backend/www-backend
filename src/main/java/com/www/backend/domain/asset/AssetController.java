@@ -25,8 +25,8 @@ public class AssetController {
     }
 
     @GetMapping
-    public ResponseEntity<SuccessResponse> getAssetsByArtistId(@RequestParam long artistId) {
-        return ResponseEntity.ok(assetService.getAssetsByArtistId(artistId));
+    public ResponseEntity<SuccessResponse> getAssetsByArtistId(@RequestHeader String code) {
+        return ResponseEntity.ok(assetService.getAssetsByArtistCode(code));
     }
 
     @GetMapping("/{genre}")

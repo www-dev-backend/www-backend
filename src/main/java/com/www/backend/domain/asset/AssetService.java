@@ -69,8 +69,11 @@ public class AssetService {
         return new SuccessResponse(assets);
     }
 
-    public SuccessResponse getAssetsByArtistId(long artistId) {
-        List<AssetRawDto> assets = assetRepository.findAllByArtistId(artistId)
+    public SuccessResponse getAssetsByArtistCode(String code) {
+        Artist artist = artistRepository.findByCode(code)
+                .orElseThrow(() -> new EntityNotFoundException("요청한 Code와 일치하는 아티스트가 없습니다."));
+
+        List<AssetRawDto> assets = assetRepository.findAllByArtistId(artist.getId())
                 .orElseThrow(() -> new EntityNotFoundException("요청한 ArtistID와 일치하는 에셋이 없습니다."));
 
         return new SuccessResponse(assets);
