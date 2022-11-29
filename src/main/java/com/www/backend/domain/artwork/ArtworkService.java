@@ -31,7 +31,7 @@ public class ArtworkService {
     @Transactional
     public SuccessResponse createArtwork(String code, CreateArtworkParameter parameter){
         Artist artist = artistRepository.findByCode(code)
-                .orElseThrow(() -> new EntityNotFoundException("요청한 Code와 일치하는 아트워크가 없습니다."));
+                .orElseThrow(() -> new EntityNotFoundException("요청한 Code와 일치하는 아티스트가 없습니다."));
 
         Artwork artwork = artworkRepository.save(artworkMapper.toEntity(parameter));
         artwork.registerArtist(artist);
@@ -40,8 +40,11 @@ public class ArtworkService {
     }
 
     @Transactional
-    public SuccessResponse updateArtwork(long artworkId, UpdateArtworkParameter parameter){
-        Artwork artwork = artworkRepository.findById(artworkId)
+    public SuccessResponse updateArtwork(String code, UpdateArtworkParameter parameter){
+        Artist artist = artistRepository.findByCode(code)
+                .orElseThrow(() -> new EntityNotFoundException("요청한 Code와 일치하는 아티스트가 없습니다."));
+
+        Artwork artwork = artworkRepository.findByArtistId(artist.getId())
                 .orElseThrow(() -> new EntityNotFoundException("요청한 ArtistID와 일치하는 아트워크가 없습니다."));
 
         artworkMapper.updateToEntity(parameter, artwork);
@@ -63,15 +66,18 @@ public class ArtworkService {
         List<AssetRawDto> assets = assetRepository.findAllByArtistId(artist.getId())
                 .orElseThrow(() -> new EntityNotFoundException("요청한 ArtistID와 일치하는 에셋이 없습니다."));
 
-        ArtworkDto artwork = artworkRepository.findByArtistId(artist.getId())
-                .orElseThrow(() -> new EntityNotFoundException("요청한 ArtistID와 일치하는 아트워크가 없습니다."));
+        Artwork artwork = artworkRepository.findByArtistId(artist.getId())
+                .orElseThrow(() -> new EntityNotFoundException("요청한 자원이 없습니다."));
 
-        return new SuccessResponse(new ArtworkWrapperDto(artwork, artistMapper.toDto(artist), assets));
+        return new SuccessResponse(new ArtworkWrapperDto(artworkMapper.toDto(artwork), artistMapper.toDto(artist), assets));
     }
 
     @Transactional
-    public void deleteArtwork(long artworkId) {
-        Artwork artwork = artworkRepository.findById(artworkId)
+    public void deleteArtwork(String code) {
+        Artist artist = artistRepository.findByCode(code)
+                .orElseThrow(() -> new EntityNotFoundException("요청한 Code와 일치하는 아티스트가 없습니다."));
+
+        Artwork artwork = artworkRepository.findByArtistId(artist.getId())
                 .orElseThrow(() -> new EntityNotFoundException("요청한 ArtistID와 일치하는 아트워크가 없습니다."));
 
         artworkRepository.delete(artwork);

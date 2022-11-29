@@ -32,7 +32,7 @@ public class AssetService {
 
         artist.add(asset);
 
-        return new SuccessResponse(assetMapper.toDto(asset));
+        return new SuccessResponse(assetMapper.toRawDto(asset));
     }
 
     @Transactional

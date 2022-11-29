@@ -32,15 +32,15 @@ public class ArtworkController {
         return ResponseEntity.ok(artworkService.getArtworkDetail(artworkId));
     }
 
-    @PutMapping("/{artworkId}")
-    public ResponseEntity<SuccessResponse> updateArtwork(@PathVariable long artworkId,
+    @PutMapping()
+    public ResponseEntity<SuccessResponse> updateArtwork(@RequestHeader String code,
                                                          @Valid @RequestBody UpdateArtworkParameter parameter) {
-        return ResponseEntity.ok(artworkService.updateArtwork(artworkId, parameter));
+        return ResponseEntity.ok(artworkService.updateArtwork(code, parameter));
     }
 
-    @DeleteMapping("/{artworkId}")
-    public ResponseEntity<Void> deleteArtwork(@PathVariable long artworkId) {
-        artworkService.deleteArtwork(artworkId);
+    @DeleteMapping()
+    public ResponseEntity<Void> deleteArtwork(@RequestHeader String code) {
+        artworkService.deleteArtwork(code);
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 

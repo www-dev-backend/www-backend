@@ -15,13 +15,9 @@ public class ArtworkRepositoryImpl extends BaseRepositoryImpl<Artwork, Long> imp
     }
 
     @Override
-    public Optional<ArtworkDto> findByArtistId(long artistId) {
+    public Optional<Artwork> findByArtistId(long artistId) {
         return Optional.ofNullable(
-                query.select(new QArtworkDto(
-                                artwork.title,
-                                artwork.description
-                        ))
-                        .from(artwork)
+                query.selectFrom(artwork)
                         .where(artwork.artist.id.eq(artistId),
                                 artwork.deletedAt.isNull())
                         .fetchOne()
