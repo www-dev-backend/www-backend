@@ -42,14 +42,12 @@ public class ArtistService {
     }
 
     @Transactional
-    public SuccessResponse updateArtist(long artistId, UpdateArtistParameter updateArtistParameter) {
-        ArtistDto artistDto = artistRepository.findById(artistId)
+    public SuccessResponse updateArtist(UpdateArtistParameter updateArtistParameter) {
+        Artist artist = artistRepository.findByEmail(updateArtistParameter.getEmail())
                 .orElseThrow(() -> new EntityNotFoundException("요청한 ID와 일치하는 아티스트가 없습니다."));
 
-        Artist artist = artistMapper.toEntity(artistDto);
         artistMapper.updateToEntity(updateArtistParameter, artist);
-        Artist updatedArtist = artistRepository.save(artist);
-        return new SuccessResponse(updatedArtist);
+        return new SuccessResponse(artistMapper.toDto(artist));
     }
 
     public PaginationResponse getArtistsByPagination(SearchArtistRequest searchArtistRequest) {
