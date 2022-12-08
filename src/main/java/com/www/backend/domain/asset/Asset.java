@@ -31,5 +31,4 @@ public class Asset extends BaseTimeEntity {
     @JoinColumn(name = "artist_id", referencedColumnName = "id")
     @Comment("FK: 아티스트 아이디")
     private Artist artist;
-
 }

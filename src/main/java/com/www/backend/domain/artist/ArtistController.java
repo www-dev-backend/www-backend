@@ -6,6 +6,8 @@ import com.www.backend.domain.artist.dto.CreateArtistParameter;
 import com.www.backend.domain.artist.dto.SearchArtistRequest;
 import com.www.backend.domain.artist.dto.UpdateArtistParameter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,11 @@ import javax.validation.Valid;
 public class ArtistController {
     private final ArtistService artistService;
 
+    @Value("${spring.profiles.active:Unknown}")
+    private static String profile;
+
+    private final Environment env;
+
     @PostMapping
     public ResponseEntity<SuccessResponse> register(@Valid @RequestBody CreateArtistParameter createArtistParameter) {
         return ResponseEntity.ok(artistService.createArtist(createArtistParameter));
@@ -25,6 +32,8 @@ public class ArtistController {
 
     @GetMapping
     public ResponseEntity<SuccessResponse> getArtists() {
+        System.out.println(env.getProperty("spring.profiles.active"));
+        System.out.println(profile);
         return ResponseEntity.ok(artistService.getArtists());
     }
 

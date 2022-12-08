@@ -2,7 +2,6 @@ package com.www.backend.domain.asset.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.querydsl.core.annotations.QueryProjection;
-import com.www.backend.domain.artist.dto.ArtistDto;
 import com.www.backend.domain.artist.dto.AssetArtistDto;
 import lombok.Getter;
 import lombok.Setter;

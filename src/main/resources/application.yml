@@ -7,8 +7,9 @@ logging:
         security: debug
 
 spring:
-  profiles:
-    active: prod
+  config:
+    activate:
+      on-profile: local
   web:
     locale: ko
   # Postgresql Connection Info
