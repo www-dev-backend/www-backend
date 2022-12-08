@@ -41,7 +41,7 @@ jobs:
         aws-region: 'ap-northeast-2'
         aws-security-group-id: ${{ secrets.AWS_SECURITY_GROUP_ID }}
         port: ${{ secrets.DB_PORT }}
-        to-port: '30'
+        to-port: ''
         protocol: 'tcp'
         description: 'GitHub Action'
 
