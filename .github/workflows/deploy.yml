@@ -40,7 +40,7 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
         aws-region: 'ap-northeast-2'
         aws-security-group-id: ${{ secrets.AWS_SECURITY_GROUP_ID }}
-        port: '22'
+        port: ${{ secrets.DB_PORT }}
         to-port: '30'
         protocol: 'tcp'
         description: 'GitHub Action'
