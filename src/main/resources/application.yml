@@ -5,11 +5,15 @@ logging:
     org:
       springframework:
         security: debug
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error
 
 spring:
   config:
     activate:
-      on-profile: local
+      on-profile: @spring.profiles.active@
   web:
     locale: ko
   # Postgresql Connection Info
