@@ -52,4 +52,59 @@ cloud:
     stack:
       auto: false
 
+---
+
+server:
+  port: 8000
+logging:
+  level:
+    org:
+      springframework:
+        security: debug
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  web:
+    locale: ko
+  # Postgresql Connection Info
+  datasource:
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useSSL=false&serverTimezone=UTC
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      # Hibernate
+      hibernate:
+        show_sql: true # 쿼리 출력
+        format_sql: true # 쿼리 포맷팅
+        default_batch_fetch_size: 1000
+        #        generate_statistics: true # 쿼리 통계 출력
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+
+  servlet:
+    # 파일 업로드 사이즈 제한
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+cloud:
+  aws:
+    s3:
+      bucket: www-web-assets
+    credentials:
+      access-key: ${AWS_ACCESS_KEY}
+      secret-key: ${AWS_SECRET_KEY}
+    region:
+      static: ap-northeast-2
+      auto: false
+    stack:
+      auto: false
 
