@@ -137,6 +137,7 @@
             </activation>
             <properties>
                 <spring.profiles.active>local</spring.profiles.active>
+
             </properties>
         </profile>
         <profile>
@@ -182,5 +183,16 @@
 
 
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources/${spring.profiles.active}</directory>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources/${spring.profiles.active}</directory>
+            </testResource>
+        </testResources>
     </build>
 </project>

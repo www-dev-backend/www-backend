@@ -5,6 +5,10 @@ logging:
     org:
       springframework:
         security: debug
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error
 
 spring:
   config:
