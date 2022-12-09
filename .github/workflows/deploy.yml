@@ -84,10 +84,11 @@ jobs:
 
     - name: SCP Command to Transfer Files
       uses: appleboy/scp-action@v0.1.3
-      host: ${{ secrets.SSH_HOST }}
-      username: ${{ secrets.SSH_USERNAME }}
-      port: ${{ secrets.SSH_PORT }}
-      key: ${{ secrets.SSH_PRIVATE_KEY }}
-      source: "target/*.jar"
-      target: "www-backend/target"
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        port: ${{ secrets.SSH_PORT }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        source: "target/*.jar"
+        target: "www-backend/target"
 
