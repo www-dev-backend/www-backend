@@ -52,6 +52,20 @@ public class AssetService {
         return new SuccessResponse(updatedAsset);
     }
 
+    public SuccessResponse getMainAssets() {
+        List<AssetRawDto> assets = assetRepository.findMainAssets()
+                .orElseThrow(() -> new EntityNotFoundException("요청한 자원이 없습니다."));
+
+        return new SuccessResponse(assets);
+    }
+
+    public SuccessResponse getMainAssetsByGenre(String genre) {
+        List<AssetRawDto> assets = assetRepository.findMainAssetsByGenre(genre)
+                .orElseThrow(() -> new EntityNotFoundException("요청한 자원이 없습니다."));
+
+        return new SuccessResponse(assets);
+    }
+
     public SuccessResponse getAssetsWithArtist() {
         List<Asset> assets = assetRepository.findAll();
 

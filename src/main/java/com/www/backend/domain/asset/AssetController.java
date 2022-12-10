@@ -31,12 +31,12 @@ public class AssetController {
 
     @GetMapping("/{genre}")
     public ResponseEntity<SuccessResponse> getAssetsByGenre(@PathVariable String genre) {
-        return ResponseEntity.ok(assetService.getAssetsByGenre(genre));
+        return ResponseEntity.ok(assetService.getMainAssetsByGenre(genre));
     }
 
     @GetMapping("/all")
     public ResponseEntity<SuccessResponse> getAssetsWithArtist() {
-        return ResponseEntity.ok(assetService.getAssetsWithArtist());
+        return ResponseEntity.ok(assetService.getMainAssets());
     }
 
     @PutMapping("/{assetId}")

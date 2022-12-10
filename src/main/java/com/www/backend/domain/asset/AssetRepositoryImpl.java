@@ -55,4 +55,32 @@ public class AssetRepositoryImpl extends BaseRepositoryImpl<Asset, Long> impleme
 
         return count > 1;
     }
+
+    @Override
+    public Optional<List<AssetRawDto>> findMainAssets() {
+        return Optional.ofNullable(
+                query.select(new QAssetRawDto(
+                                asset.genre,
+                                asset.type,
+                                asset.url
+                        ))
+                        .from(asset)
+                        .where(asset.isMain.eq(true))
+                        .fetch()
+        );
+    }
+
+    @Override
+    public Optional<List<AssetRawDto>> findMainAssetsByGenre(String genre) {
+        return Optional.ofNullable(
+                query.select(new QAssetRawDto(
+                                asset.genre,
+                                asset.type,
+                                asset.url
+                        ))
+                        .from(asset)
+                        .where(asset.genre.eq(genre), asset.isMain.eq(true))
+                        .fetch()
+        );
+    }
 }
