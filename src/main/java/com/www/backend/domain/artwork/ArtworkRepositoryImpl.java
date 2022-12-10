@@ -23,4 +23,15 @@ public class ArtworkRepositoryImpl extends BaseRepositoryImpl<Artwork, Long> imp
                         .fetchOne()
         );
     }
+
+    @Override
+    public Boolean checkExistsArtwork(long artistId) {
+        Long count = query
+                .select(artwork.count())
+                .from(artwork)
+                .where(artwork.artist.id.eq(artistId))
+                .fetchFirst();
+
+        return count == 1;
+    }
 }

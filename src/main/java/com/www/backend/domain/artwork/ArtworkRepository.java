@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface ArtworkRepository extends BaseRepository<Artwork, Long> {
     Optional<Artwork> findByArtistId(long artistId);
+    Boolean checkExistsArtwork(long artistId);
 }

@@ -8,6 +8,7 @@ import com.www.backend.domain.artist.mapper.ArtistMapper;
 import com.www.backend.domain.artwork.dto.ArtworkWrapperDto;
 import com.www.backend.domain.artwork.dto.CreateArtworkParameter;
 import com.www.backend.domain.artwork.dto.UpdateArtworkParameter;
+import com.www.backend.domain.artwork.exceptions.ArtworkPolicyException;
 import com.www.backend.domain.artwork.mapper.ArtworkMapper;
 import com.www.backend.domain.asset.Asset;
 import com.www.backend.domain.asset.AssetRepository;
@@ -33,11 +34,15 @@ public class ArtworkService {
 
     @Transactional
     public SuccessResponse registerArtwork(String code, CreateArtworkParameter parameter){
-        // TODO: 1. find artist
         Artist artist = artistRepository.findByCode(code)
                 .orElseThrow(() -> new EntityNotFoundException("요청한 Code와 일치하는 아티스트가 없습니다."));
 
-        // TODO: 2. 작품 리스트(Assets) Entity들의 리스트로 변환 후 저장
+        Boolean isExists = artworkRepository.checkExistsArtwork(artist.getId());
+
+        if (isExists) {
+            throw new ArtworkPolicyException("아트워크는 아티스트 당 1개만 생성이 가능합니다.");
+        }
+
         List<Asset> assets = parameter.getAssets().stream()
                 .map(assetMapper::toEntity)
                 .map((asset) -> {
@@ -68,6 +73,12 @@ public class ArtworkService {
     public SuccessResponse createArtwork(String code, CreateArtworkParameter parameter){
         Artist artist = artistRepository.findByCode(code)
                 .orElseThrow(() -> new EntityNotFoundException("요청한 Code와 일치하는 아티스트가 없습니다."));
+
+        Boolean isExists = artworkRepository.checkExistsArtwork(artist.getId());
+
+        if (isExists) {
+            throw new ArtworkPolicyException("아트워크는 아티스트 당 1개만 생성이 가능합니다.");
+        }
 
         Artwork artwork = artworkRepository.save(artworkMapper.toEntity(parameter));
         artwork.registerArtist(artist);
