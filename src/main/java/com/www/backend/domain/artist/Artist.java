@@ -52,6 +52,10 @@ public class Artist extends BaseTimeEntity {
         asset.setArtist(this);
     }
 
+    public void register(Asset asset) {
+        asset.setArtist(this);
+    }
+
     public void createCode() {
         String[] tokens = this.email.split("@");
         String code = CodeUtils.generateCode(4);

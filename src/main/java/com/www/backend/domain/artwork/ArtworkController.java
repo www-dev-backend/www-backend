@@ -16,10 +16,10 @@ import javax.validation.Valid;
 public class ArtworkController {
     private final ArtworkService artworkService;
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<SuccessResponse> registerArtwork(@RequestHeader String code,
                                                            @Valid @RequestBody CreateArtworkParameter parameter) {
-        return ResponseEntity.ok(artworkService.createArtwork(code, parameter));
+        return ResponseEntity.ok(artworkService.registerArtwork(code, parameter));
     }
 
     @GetMapping
@@ -43,13 +43,5 @@ public class ArtworkController {
         artworkService.deleteArtwork(code);
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
-
-//    @GetMapping
-//    public ResponseEntity<PaginationResponse> getArtworks(@RequestParam(defaultValue = "0", required = false) int page,
-//                                                         @RequestParam(defaultValue = "10", required = false) int take) {
-//        SearchArtworkRequest request = new SearchArtworkRequest(page, take);
-//
-////        return ResponseEntity.ok(artworkService.getArtworks(request));
-//    }
 
 }

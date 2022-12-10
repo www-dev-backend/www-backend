@@ -1,10 +1,7 @@
 package com.www.backend.domain.asset.mapper;
 
 import com.www.backend.domain.asset.Asset;
-import com.www.backend.domain.asset.dto.AssetDto;
-import com.www.backend.domain.asset.dto.AssetRawDto;
-import com.www.backend.domain.asset.dto.CreateAssetParameter;
-import com.www.backend.domain.asset.dto.UpdateAssetParameter;
+import com.www.backend.domain.asset.dto.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
@@ -13,6 +10,8 @@ public interface AssetMapper {
     AssetDto toDto(Asset asset);
 
     AssetRawDto toRawDto(Asset asset);
+
+    Asset toEntity(AssetRawDto parameter);
 
     Asset toEntity(CreateAssetParameter parameter);
 

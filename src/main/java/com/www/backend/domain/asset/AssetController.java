@@ -2,7 +2,6 @@ package com.www.backend.domain.asset;
 
 import com.www.backend.common.response.SuccessResponse;
 import com.www.backend.domain.asset.dto.CreateAssetParameter;
-import com.www.backend.domain.asset.dto.CreateAssetWrapper;
 import com.www.backend.domain.asset.dto.UpdateAssetParameter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
