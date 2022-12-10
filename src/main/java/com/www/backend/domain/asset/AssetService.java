@@ -8,6 +8,7 @@ import com.www.backend.domain.asset.dto.AssetDto;
 import com.www.backend.domain.asset.dto.AssetRawDto;
 import com.www.backend.domain.asset.dto.CreateAssetParameter;
 import com.www.backend.domain.asset.dto.UpdateAssetParameter;
+import com.www.backend.domain.asset.exceptions.AssetPolicyException;
 import com.www.backend.domain.asset.mapper.AssetMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,12 @@ public class AssetService {
     public SuccessResponse createAsset(String code, CreateAssetParameter parameter) {
         Artist artist = artistRepository.findByCode(code)
                 .orElseThrow(() -> new EntityNotFoundException("요청한 Code와 일치하는 아티스트가 없습니다."));
+
+        Boolean exists = assetRepository.countByIsMain(artist.getId());
+        if (parameter.getIsMain() && exists) {
+            throw new AssetPolicyException("대표 작품은 하나만 설정 가능합니다.");
+        }
+
         Asset asset = assetRepository.save(assetMapper.toEntity(parameter));
 
         artist.add(asset);

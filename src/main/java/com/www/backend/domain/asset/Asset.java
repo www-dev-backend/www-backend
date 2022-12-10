@@ -18,13 +18,20 @@ public class Asset extends BaseTimeEntity {
     private Long id;
 
     @Column
+    @Comment("Asset 장르")
     private String genre;
 
     @Column
+    @Comment("Asset 타입(image, video)")
     private String type;
 
     @Column
+    @Comment("Asset 접근 주소")
     private String url;
+
+    @Column(columnDefinition="boolean default false")
+    @Comment("대표 작품 여부")
+    private Boolean isMain;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)

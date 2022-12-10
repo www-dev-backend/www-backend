@@ -15,4 +15,6 @@ public class CreateAssetParameter {
 
     @NotBlank
     private String url;
+
+    private Boolean isMain;
 }

@@ -43,4 +43,16 @@ public class AssetRepositoryImpl extends BaseRepositoryImpl<Asset, Long> impleme
                     .fetch()
         );
     }
+
+    @Override
+    public Boolean countByIsMain(long artistId) {
+        Long count = query.select(
+                        asset.count()
+                )
+                .from(asset)
+                .where(asset.artist.id.eq(artistId))
+                .fetchFirst();
+
+        return count > 1;
+    }
 }
