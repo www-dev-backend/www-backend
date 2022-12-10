@@ -28,7 +28,8 @@ public class AssetRepositoryImpl extends BaseRepositoryImpl<Asset, Long> impleme
                 query.select(new QAssetRawDto(
                                 asset.genre,
                                 asset.type,
-                                asset.url
+                                asset.url,
+                                asset.isMain
                         ))
                         .from(asset)
                         .where(asset.artist.id.eq(artistId), asset.deletedAt.isNull())
@@ -43,7 +44,8 @@ public class AssetRepositoryImpl extends BaseRepositoryImpl<Asset, Long> impleme
                 query.select(new QAssetRawDto(
                                 asset.genre,
                                 asset.type,
-                                asset.url
+                                asset.url,
+                                asset.isMain
                         ))
                         .from(asset)
                         .where(asset.genre.eq(genre), asset.deletedAt.isNull())
@@ -69,7 +71,8 @@ public class AssetRepositoryImpl extends BaseRepositoryImpl<Asset, Long> impleme
                 query.select(new QAssetRawDto(
                                 asset.genre,
                                 asset.type,
-                                asset.url
+                                asset.url,
+                                asset.isMain
                         ))
                         .from(asset)
                         .where(asset.isMain.eq(true))
@@ -83,7 +86,8 @@ public class AssetRepositoryImpl extends BaseRepositoryImpl<Asset, Long> impleme
                 query.select(new QAssetRawDto(
                                 asset.genre,
                                 asset.type,
-                                asset.url
+                                asset.url,
+                                asset.isMain
                         ))
                         .from(asset)
                         .where(asset.genre.eq(genre), asset.isMain.eq(true))
