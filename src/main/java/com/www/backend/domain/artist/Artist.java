@@ -42,6 +42,8 @@ public class Artist extends BaseTimeEntity {
 
     private String description;
 
+    @Lob
+    @Comment(value = "자기소개")
     private String bio;
 
     private String profileImage;

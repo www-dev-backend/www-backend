@@ -32,8 +32,6 @@ public class ArtistController {
 
     @GetMapping
     public ResponseEntity<SuccessResponse> getArtists() {
-        System.out.println(env.getProperty("spring.profiles.active"));
-        System.out.println(profile);
         return ResponseEntity.ok(artistService.getArtists());
     }
 
