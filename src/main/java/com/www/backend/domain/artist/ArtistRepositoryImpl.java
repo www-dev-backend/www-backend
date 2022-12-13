@@ -1,7 +1,9 @@
 package com.www.backend.domain.artist;
 
 import com.www.backend.common.repository.BaseRepositoryImpl;
+import com.www.backend.domain.artist.dto.ArtistDetailDto;
 import com.www.backend.domain.artist.dto.ArtistDto;
+import com.www.backend.domain.artist.dto.QArtistDetailDto;
 import com.www.backend.domain.artist.dto.QArtistDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -24,12 +26,8 @@ public class ArtistRepositoryImpl extends BaseRepositoryImpl<Artist, Long> imple
         List<ArtistDto> artists = query.select(new QArtistDto(
                         artist.id,
                         artist.genre,
-                        artist.name,
                         artist.nickname,
-                        artist.email,
-                        artist.contact,
-                        artist.description,
-                        artist.bio
+                        artist.profileImage
                 ))
                 .from(artist)
                 .offset(pageable.getOffset())
@@ -45,18 +43,20 @@ public class ArtistRepositoryImpl extends BaseRepositoryImpl<Artist, Long> imple
     }
 
     @Override
-    public Optional<ArtistDto> findById(long assetId) {
+    public Optional<ArtistDetailDto> findById(long assetId) {
         return Optional.ofNullable(
                query
-                    .select(new QArtistDto(
+                    .select(new QArtistDetailDto(
                             artist.id,
+                            artist.type,
                             artist.genre,
                             artist.name,
                             artist.nickname,
                             artist.email,
                             artist.contact,
                             artist.description,
-                            artist.bio
+                            artist.bio,
+                            artist.profileImage
                     ))
                     .from(artist)
                     .where(artist.id.eq(assetId), artist.deletedAt.isNull())

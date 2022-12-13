@@ -6,6 +6,7 @@ import com.www.backend.common.util.CodeUtils;
 import com.www.backend.domain.asset.Asset;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.*;
@@ -25,13 +26,15 @@ public class Artist extends BaseTimeEntity {
     @Column(unique = true)
     private String code;
 
+    @Comment("Personal or Team 구분")
+    private String type;
+
     // TODO: 장르는 ENUM 타입으로 수정해야 함
     private String genre;
 
     private String name;
 
     private String nickname;
-
     @Column(unique = true)
     private String email;
 
@@ -48,8 +51,9 @@ public class Artist extends BaseTimeEntity {
     @JoinColumn(name = "artist_id", referencedColumnName = "id")
     private List<Asset> assets = new ArrayList<>();
 
-    public void add(Asset asset) {
+    public Asset add(Asset asset) {
         asset.setArtist(this);
+        return asset;
     }
 
     public void register(Asset asset) {

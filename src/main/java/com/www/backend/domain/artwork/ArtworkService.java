@@ -45,10 +45,7 @@ public class ArtworkService {
 
         List<Asset> assets = parameter.getAssets().stream()
                 .map(assetMapper::toEntity)
-                .map((asset) -> {
-                    artist.add(asset);
-                    return asset;
-                })
+                .map(artist::add)
                 .collect(Collectors.toList());
 
         assetRepository.batchInsertAssets(assets);

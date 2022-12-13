@@ -10,31 +10,17 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ArtistDto {
     private Long id;
-
     private String genre;
-
-    private String name;
-
     private String nickname;
 
-    private String email;
-
-    private String contact;
-
-    private String description;
-
-    private String bio;
+    private String profileImage;
 
 
     @QueryProjection
-    public ArtistDto(Long id, String genre, String name, String nickname, String email, String contact, String description, String bio) {
+    public ArtistDto(Long id, String genre, String nickname, String profileImage) {
         this.id = id;
         this.genre = genre;
-        this.name = name;
         this.nickname = nickname;
-        this.email = email;
-        this.contact = contact;
-        this.description = description;
-        this.bio = bio;
+        this.profileImage = profileImage;
     }
 }

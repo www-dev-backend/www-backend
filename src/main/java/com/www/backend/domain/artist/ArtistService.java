@@ -69,7 +69,7 @@ public class ArtistService {
     }
 
     public SuccessResponse getArtistDetail(long artistId) {
-        ArtistDto artist = artistRepository.findById(artistId)
+        ArtistDetailDto artist = artistRepository.findById(artistId)
                 .orElseThrow(() -> new EntityNotFoundException("요청한 ID와 일치하는 아티스트가 없습니다."));
 
         List<AssetRawDto> assets = assetRepository.findAllByArtistId(artistId)
