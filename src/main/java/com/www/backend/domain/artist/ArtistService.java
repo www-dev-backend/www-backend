@@ -29,7 +29,7 @@ public class ArtistService {
 
     @Transactional
     public SuccessResponse createArtist(CreateArtistParameter createArtistParameter) {
-        boolean isExists = artistRepository.existsByEmail(createArtistParameter.getEmail());
+        boolean isExists = artistRepository.existsByEmail(createArtistParameter.getType(), createArtistParameter.getEmail());
 
         if (isExists) {
             throw new DuplicateEmailException("이미 등록된 이메일이 있습니다.");

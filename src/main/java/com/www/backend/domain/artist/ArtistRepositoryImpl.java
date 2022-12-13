@@ -86,11 +86,11 @@ public class ArtistRepositoryImpl extends BaseRepositoryImpl<Artist, Long> imple
     }
 
     @Override
-    public boolean existsByEmail(String email) {
+    public boolean existsByEmail(String type, String email) {
         Integer count = query
                 .selectOne()
                 .from(artist)
-                .where(artist.email.eq(email))
+                .where(artist.type.eq(type), artist.email.eq(email))
                 .fetchFirst();
 
         return count != null;
