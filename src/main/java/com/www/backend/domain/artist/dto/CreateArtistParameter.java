@@ -9,6 +9,9 @@ import javax.validation.constraints.NotEmpty;
 
 @Getter @Setter
 public class CreateArtistParameter {
+    @NotBlank(message = "타입을 입력해주세요.")
+    private String type;
+
     @NotBlank(message = "장르를 선택해주세요.")
     private String genre;
 
