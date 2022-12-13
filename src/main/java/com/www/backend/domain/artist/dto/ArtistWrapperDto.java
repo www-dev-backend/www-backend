@@ -11,6 +11,7 @@ import java.util.List;
 public class ArtistWrapperDto {
     private Long id;
 
+    private String type;
     private String genre;
 
     private String name;
@@ -27,6 +28,7 @@ public class ArtistWrapperDto {
 
     public ArtistWrapperDto(ArtistDetailDto artist, List<AssetRawDto> assets) {
         this.id = artist.getId();
+        this.type = artist.getType();
         this.genre = artist.getGenre();
         this.name = artist.getName();
         this.email = artist.getEmail();
