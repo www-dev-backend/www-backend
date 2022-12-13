@@ -35,7 +35,6 @@ public class Artist extends BaseTimeEntity {
     private String name;
 
     private String nickname;
-    @Column(unique = true)
     private String email;
 
     private String contact;
