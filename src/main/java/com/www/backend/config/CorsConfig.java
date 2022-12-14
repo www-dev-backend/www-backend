@@ -12,7 +12,6 @@ public class CorsConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("*") // TODO: 추후에 프론트의 엔드포인트가 특정되면 수정할 예정
                 .allowedHeaders("*")
-                .allowCredentials(true)
                 .allowedMethods("*");
     }
 }
