@@ -117,5 +117,15 @@ jobs:
       run: |
         aws s3 cp target/backend-0.0.1-SNAPSHOT.jar s3://www-backend
 
+    - name: SSH Remote Commands
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.SSH_PORT }}
+        script: deploy.sh
+
+
 
 
