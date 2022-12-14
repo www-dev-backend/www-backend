@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/file")
@@ -17,5 +19,12 @@ public class FileController {
     public ResponseEntity<SuccessResponse> upload(
             @RequestPart("file") MultipartFile multipartFile) {
         return ResponseEntity.ok(fileService.uploadAsset(multipartFile));
+    }
+
+    @PostMapping("/multiple")
+    public ResponseEntity<SuccessResponse> multipleUpload(
+            @RequestHeader String code,
+            @RequestPart("files") List<MultipartFile> multipartFiles) {
+        return ResponseEntity.ok(fileService.uploadAssets(code, multipartFiles));
     }
 }

@@ -19,4 +19,11 @@ public class CreateAssetParameter {
 
     @NotBlank(message = "대표 작품 여부는 필수 값입니다.")
     private Boolean isMain;
+
+    public CreateAssetParameter(String genre, String type, String url, Boolean isMain) {
+        this.genre = genre;
+        this.type = type;
+        this.url = url;
+        this.isMain = isMain;
+    }
 }

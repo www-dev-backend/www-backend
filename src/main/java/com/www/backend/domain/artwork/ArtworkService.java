@@ -6,6 +6,7 @@ import com.www.backend.domain.artist.Artist;
 import com.www.backend.domain.artist.ArtistRepository;
 import com.www.backend.domain.artist.mapper.ArtistMapper;
 import com.www.backend.domain.artwork.dto.ArtworkWrapperDto;
+import com.www.backend.domain.artwork.dto.AssetParameter;
 import com.www.backend.domain.artwork.dto.CreateArtworkParameter;
 import com.www.backend.domain.artwork.dto.UpdateArtworkParameter;
 import com.www.backend.domain.artwork.exceptions.ArtworkPolicyException;
@@ -31,6 +32,11 @@ public class ArtworkService {
     private final AssetMapper assetMapper;
     private final ArtistRepository artistRepository;
     private final ArtistMapper artistMapper;
+
+//    @Transactional
+//    public SuccessResponse batchInsertData(String code, AssetParameter parameter) {
+//
+//    }
 
     @Transactional
     public SuccessResponse registerArtwork(String code, CreateArtworkParameter parameter){
@@ -94,7 +100,6 @@ public class ArtworkService {
 
         return new SuccessResponse(artworkMapper.toDto(artwork));
     }
-
 
 
     public SuccessResponse getArtworkDetail(long artworkId) {
