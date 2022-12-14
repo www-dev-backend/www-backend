@@ -32,4 +32,6 @@ public class CreateArtistParameter {
     private String bio;
 
     private String profileImage;
+
+    private String linkTree;
 }

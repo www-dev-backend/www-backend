@@ -12,7 +12,6 @@ public class ArtistDto {
     private Long id;
     private String genre;
     private String nickname;
-
     private String profileImage;
 
 

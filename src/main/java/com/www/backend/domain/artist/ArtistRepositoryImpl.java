@@ -56,7 +56,8 @@ public class ArtistRepositoryImpl extends BaseRepositoryImpl<Artist, Long> imple
                             artist.contact,
                             artist.description,
                             artist.bio,
-                            artist.profileImage
+                            artist.profileImage,
+                            artist.linkTree
                     ))
                     .from(artist)
                     .where(artist.id.eq(assetId), artist.deletedAt.isNull())

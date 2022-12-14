@@ -29,9 +29,11 @@ public class ArtistDetailDto {
 
     private String profileImage;
 
+    private String linkTree;
+
 
     @QueryProjection
-    public ArtistDetailDto(Long id, String type, String genre, String name, String nickname, String email, String contact, String description, String bio, String profileImage) {
+    public ArtistDetailDto(Long id, String type, String genre, String name, String nickname, String email, String contact, String description, String bio, String profileImage, String linkTree) {
         this.id = id;
         this.type = type;
         this.genre = genre;
@@ -42,5 +44,6 @@ public class ArtistDetailDto {
         this.description = description;
         this.bio = bio;
         this.profileImage = profileImage;
+        this.linkTree = linkTree;
     }
 }

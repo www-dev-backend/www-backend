@@ -67,6 +67,18 @@ public class ArtworkService {
     }
 
     @Transactional
+    public SuccessResponse updateArtwork(String code, UpdateArtworkParameter parameter){
+        Artist artist = artistRepository.findByCode(code)
+                .orElseThrow(() -> new EntityNotFoundException("요청한 Code와 일치하는 아티스트가 없습니다."));
+
+        Artwork artwork = artworkRepository.findByArtistId(artist.getId())
+                .orElseThrow(() -> new EntityNotFoundException("요청한 ArtistID와 일치하는 아트워크가 없습니다."));
+
+        artworkMapper.updateToEntity(parameter, artwork);
+        return new SuccessResponse(artworkMapper.toDto(artwork));
+    }
+
+    @Transactional
     public SuccessResponse createArtwork(String code, CreateArtworkParameter parameter){
         Artist artist = artistRepository.findByCode(code)
                 .orElseThrow(() -> new EntityNotFoundException("요청한 Code와 일치하는 아티스트가 없습니다."));
@@ -83,17 +95,7 @@ public class ArtworkService {
         return new SuccessResponse(artworkMapper.toDto(artwork));
     }
 
-    @Transactional
-    public SuccessResponse updateArtwork(String code, UpdateArtworkParameter parameter){
-        Artist artist = artistRepository.findByCode(code)
-                .orElseThrow(() -> new EntityNotFoundException("요청한 Code와 일치하는 아티스트가 없습니다."));
 
-        Artwork artwork = artworkRepository.findByArtistId(artist.getId())
-                .orElseThrow(() -> new EntityNotFoundException("요청한 ArtistID와 일치하는 아트워크가 없습니다."));
-
-        artworkMapper.updateToEntity(parameter, artwork);
-        return new SuccessResponse(artworkMapper.toDto(artwork));
-    }
 
     public SuccessResponse getArtworkDetail(long artworkId) {
         Artwork artwork = artworkRepository.findById(artworkId)

@@ -47,6 +47,9 @@ public class Artist extends BaseTimeEntity {
 
     private String profileImage;
 
+    @Comment("링크트리 URL")
+    private String linkTree;
+
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "artist_id", referencedColumnName = "id")

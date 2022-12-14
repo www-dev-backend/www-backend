@@ -24,6 +24,8 @@ public class ArtistWrapperDto {
     private String bio;
 
     private String profileImage;
+
+    private String linkTree;
     private List<AssetRawDto> assets;
 
     public ArtistWrapperDto(ArtistDetailDto artist, List<AssetRawDto> assets) {
@@ -36,6 +38,7 @@ public class ArtistWrapperDto {
         this.description = artist.getDescription();
         this.bio = artist.getBio();
         this.profileImage = artist.getProfileImage();
+        this.linkTree = artist.getLinkTree();
         this.assets = assets;
     }
 }
