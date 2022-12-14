@@ -105,13 +105,5 @@ jobs:
 #        target: "www-backend/target"
 
     - name: S3 File Upload
-      uses: zdurham/s3-upload-github-action@1.0.1
-      with:
-        args: --acl public-read
-      env:
-        FILE: ./lambda.zip
-        AWS_REGION: 'ap-northeast-2'
-        S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+      run: aws s3 cp target/backend-0.0.1-SNAPSHOT.jar s3://www-backend"
 
