@@ -13,6 +13,7 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/artworks")
+@CrossOrigin(origins = "https://wwweb.kr, https://m.wwweb.kr")
 public class ArtworkController {
     private final ArtworkService artworkService;
 

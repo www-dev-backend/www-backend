@@ -3,14 +3,12 @@ package com.www.backend.domain.auth;
 import com.www.backend.common.response.SuccessResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/auth")
+@CrossOrigin(origins = "https://wwweb.kr, https://m.wwweb.kr")
 public class AuthController {
     private final AuthService authService;
 

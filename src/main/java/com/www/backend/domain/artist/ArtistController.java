@@ -17,6 +17,7 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/artists")
+@CrossOrigin(origins = "https://wwweb.kr, https://m.wwweb.kr")
 public class ArtistController {
     private final ArtistService artistService;
 
