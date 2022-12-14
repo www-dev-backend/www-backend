@@ -104,6 +104,13 @@ jobs:
 #        source: "target/*.jar"
 #        target: "www-backend/target"
 
+    - name: File List
+      run: |
+        ls -al
+        pwd
+        cd ~
+        ls -al
+
     - name: S3 File Upload
       run: aws s3 cp target/backend-0.0.1-SNAPSHOT.jar s3://www-backend
 
