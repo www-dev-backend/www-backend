@@ -16,6 +16,14 @@ import javax.validation.Valid;
 public class AssetController {
     private final AssetService assetService;
 
+    @PostMapping("/register")
+    public ResponseEntity<SuccessResponse> register(
+            @RequestHeader String code,
+            @Valid @RequestBody CreateAssetParameter parameter
+    ) {
+        return ResponseEntity.ok(assetService.registerAsset(code, parameter));
+    }
+
     @PostMapping
     public ResponseEntity<SuccessResponse> create(
             @RequestHeader String code,

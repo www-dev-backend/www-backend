@@ -51,3 +51,12 @@ cloud:
       auto: false
     stack:
       auto: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+      base-path: /management
+  endpoint:
+    health:
+      show-details: always

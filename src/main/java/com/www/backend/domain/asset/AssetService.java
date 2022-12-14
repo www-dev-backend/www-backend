@@ -114,4 +114,8 @@ public class AssetService {
 
         assetRepository.delete(asset);
     }
+
+    public SuccessResponse registerAsset(String code, CreateAssetParameter parameter) {
+        return null;
+    }
 }

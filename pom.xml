@@ -95,6 +95,12 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- actuator -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
         <!-- mapstruct -->
         <dependency>
             <groupId>org.mapstruct</groupId>
