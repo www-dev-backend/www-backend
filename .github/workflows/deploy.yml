@@ -113,8 +113,9 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+        AWS_DEFAULT_REGION: 'ap-northeast-2'
       run: |
-        aws s3 cp --recursive --region ap-northeast-2 target/backend-0.0.1-SNAPSHOT.jar s3://www-backend
+        aws s3 cp target/backend-0.0.1-SNAPSHOT.jar s3://www-backend
 
 
 
