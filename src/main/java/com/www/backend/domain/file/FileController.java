@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/file")
-@CrossOrigin(origins = "https://wwweb.kr, https://m.wwweb.kr")
+@CrossOrigin(origins = "http://localhost:3000, https://wwweb.kr, https://m.wwweb.kr")
 public class FileController {
     private final FileService fileService;
 
