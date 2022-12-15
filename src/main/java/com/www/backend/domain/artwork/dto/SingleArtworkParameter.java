@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter @Setter
 public class SingleArtworkParameter {
-    @NotBlank
+    @NotNull
     private String title;
 
     @NotNull
