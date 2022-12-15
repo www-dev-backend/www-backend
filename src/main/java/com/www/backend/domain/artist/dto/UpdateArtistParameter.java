@@ -9,9 +9,13 @@ import javax.validation.constraints.NotEmpty;
 
 @Getter @Setter
 public class UpdateArtistParameter {
+    private String type;
+
     private String genre;
 
     private String name;
+
+    private String nickname;
 
     @Email()
     private String email;
@@ -23,4 +27,6 @@ public class UpdateArtistParameter {
     private String bio;
 
     private String profileImage;
+
+    private String linkTree;
 }

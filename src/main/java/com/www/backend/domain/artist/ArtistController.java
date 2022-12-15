@@ -54,9 +54,12 @@ public class ArtistController {
         return ResponseEntity.ok(artistService.getArtistDetail(artistId));
     }
 
-    @PutMapping()
-    public ResponseEntity<SuccessResponse> updateArtist(@Valid @RequestBody UpdateArtistParameter parameter) {
-        return ResponseEntity.ok(artistService.updateArtist(parameter));
+    @PutMapping("/{artistId}")
+    public ResponseEntity<SuccessResponse> updateArtist(
+            @PathVariable Long artistId,
+            @Valid @RequestBody UpdateArtistParameter parameter
+    ) {
+        return ResponseEntity.ok(artistService.updateArtist(artistId, parameter));
     }
 
     @DeleteMapping("/{artistId}")
