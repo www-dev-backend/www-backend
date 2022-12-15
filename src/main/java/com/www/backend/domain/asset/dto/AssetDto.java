@@ -15,8 +15,6 @@ public class AssetDto {
 
     private Boolean isMain;
 
-    private long artistId;
-
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private AssetArtistDto artist;
 

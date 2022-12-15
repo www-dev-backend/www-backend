@@ -75,7 +75,6 @@ public class AssetRepositoryImpl extends BaseRepositoryImpl<Asset, Long> impleme
                                 asset.url,
                                 asset.isMain,
                                 asset.artist.id
-
                         ))
                         .from(asset)
                         .where(asset.isMain.eq(true))
