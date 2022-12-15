@@ -11,6 +11,8 @@ import lombok.Setter;
 public class ArtistDetailDto {
     private Long id;
 
+    private String code;
+
     private String type;
 
     private String genre;
@@ -33,7 +35,7 @@ public class ArtistDetailDto {
 
 
     @QueryProjection
-    public ArtistDetailDto(Long id, String type, String genre, String name, String nickname, String email, String contact, String description, String bio, String profileImage, String linkTree) {
+    public ArtistDetailDto(Long id, String code, String type, String genre, String name, String nickname, String email, String contact, String description, String bio, String profileImage, String linkTree) {
         this.id = id;
         this.type = type;
         this.genre = genre;

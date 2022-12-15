@@ -48,6 +48,7 @@ public class ArtistRepositoryImpl extends BaseRepositoryImpl<Artist, Long> imple
                query
                     .select(new QArtistDetailDto(
                             artist.id,
+                            artist.code,
                             artist.type,
                             artist.genre,
                             artist.name,
