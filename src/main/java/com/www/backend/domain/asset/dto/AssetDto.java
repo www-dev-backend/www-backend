@@ -9,6 +9,7 @@ import lombok.Setter;
 @Getter @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AssetDto {
+    private String genre;
     private String type;
 
     private String url;
@@ -19,7 +20,8 @@ public class AssetDto {
     private AssetArtistDto artist;
 
     @QueryProjection
-    public AssetDto(String type, String url, Boolean isMain, long artistId) {
+    public AssetDto(String genre, String type, String url, Boolean isMain, long artistId) {
+        this.genre = genre;
         this.type = type;
         this.url = url;
         this.isMain = isMain;

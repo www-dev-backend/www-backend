@@ -71,6 +71,7 @@ public class AssetRepositoryImpl extends BaseRepositoryImpl<Asset, Long> impleme
     public Optional<List<AssetDto>> findMainAssets() {
         return Optional.ofNullable(
                 query.select(new QAssetDto(
+                                asset.genre,
                                 asset.type,
                                 asset.url,
                                 asset.isMain,
@@ -83,13 +84,14 @@ public class AssetRepositoryImpl extends BaseRepositoryImpl<Asset, Long> impleme
     }
 
     @Override
-    public Optional<List<AssetRawDto>> findMainAssetsByGenre(String genre) {
+    public Optional<List<AssetDto>> findMainAssetsByGenre(String genre) {
         return Optional.ofNullable(
-                query.select(new QAssetRawDto(
+                query.select(new QAssetDto(
                                 asset.genre,
                                 asset.type,
                                 asset.url,
-                                asset.isMain
+                                asset.isMain,
+                                asset.artist.id
                         ))
                         .from(asset)
                         .where(asset.genre.eq(genre), asset.isMain.eq(true))

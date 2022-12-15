@@ -60,7 +60,7 @@ public class AssetService {
     }
 
     public SuccessResponse getMainAssetsByGenre(String genre) {
-        List<AssetRawDto> assets = assetRepository.findMainAssetsByGenre(genre)
+        List<AssetDto> assets = assetRepository.findMainAssetsByGenre(genre)
                 .orElseThrow(() -> new EntityNotFoundException("요청한 자원이 없습니다."));
 
         return new SuccessResponse(assets);

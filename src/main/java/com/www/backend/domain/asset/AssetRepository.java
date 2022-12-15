@@ -14,6 +14,6 @@ public interface AssetRepository extends BaseRepository<Asset, Long> {
     Optional<List<AssetRawDto>> findAssetsByGenre(String genre);
     Boolean countByIsMain(long artistId);
     Optional<List<AssetDto>> findMainAssets();
-    Optional<List<AssetRawDto>> findMainAssetsByGenre(String genre);
+    Optional<List<AssetDto>> findMainAssetsByGenre(String genre);
     void batchInsertAssets(List<Asset> assets);
 }
