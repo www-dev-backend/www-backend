@@ -37,6 +37,7 @@ public class ArtistDetailDto {
     @QueryProjection
     public ArtistDetailDto(Long id, String code, String type, String genre, String name, String nickname, String email, String contact, String description, String bio, String profileImage, String linkTree) {
         this.id = id;
+        this.code = code;
         this.type = type;
         this.genre = genre;
         this.name = name;

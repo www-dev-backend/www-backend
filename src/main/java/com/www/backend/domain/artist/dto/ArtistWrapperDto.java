@@ -10,11 +10,12 @@ import java.util.List;
 @Getter @Setter
 public class ArtistWrapperDto {
     private Long id;
-
+    private String code;
     private String type;
     private String genre;
 
     private String name;
+    private String nickname;
 
     private String email;
 
@@ -30,9 +31,11 @@ public class ArtistWrapperDto {
 
     public ArtistWrapperDto(ArtistDetailDto artist, List<AssetRawDto> assets) {
         this.id = artist.getId();
+        this.code = artist.getCode();
         this.type = artist.getType();
         this.genre = artist.getGenre();
         this.name = artist.getName();
+        this.nickname = artist.getNickname();
         this.email = artist.getEmail();
         this.contact = artist.getContact();
         this.description = artist.getDescription();
