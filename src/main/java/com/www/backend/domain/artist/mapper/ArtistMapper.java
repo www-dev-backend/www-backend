@@ -5,8 +5,7 @@ import com.www.backend.domain.artist.dto.ArtistDetailDto;
 import com.www.backend.domain.artist.dto.ArtistDto;
 import com.www.backend.domain.artist.dto.CreateArtistParameter;
 import com.www.backend.domain.artist.dto.UpdateArtistParameter;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
+import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
 public interface ArtistMapper {
@@ -18,5 +17,7 @@ public interface ArtistMapper {
 
     Artist toEntity(ArtistDto artistDto);
 
-    void updateToEntity(UpdateArtistParameter updateArtistParameter, @MappingTarget Artist artist);
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
+            nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
+    void updateToEntity(UpdateArtistParameter parameter, @MappingTarget Artist artist);
 }
