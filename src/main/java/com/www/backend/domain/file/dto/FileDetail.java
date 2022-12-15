@@ -30,7 +30,7 @@ public class FileDetail {
         final String fileId = MultipartUtils.createFileId();
         final String format = MultipartUtils.getFormat(multipartFile.getContentType());
         final String fileType = MultipartUtils.createFileType(format);
-        final Resolution resolution = MultipartUtils.getResolution(fileType, multipartFile);
+//        final Resolution resolution = MultipartUtils.getResolution(fileType, multipartFile);
 
         return FileDetail.builder()
                 .id(fileId)
@@ -40,8 +40,8 @@ public class FileDetail {
                 .path(MultipartUtils.createPath(fileType, fileId, format))
                 .url(MultipartUtils.createUrl(fileType, fileId, format))
                 .size(multipartFile.getSize())
-                .width(resolution.getWidth())
-                .height(resolution.getHeight())
+                .width(0)
+                .height(0)
                 .build();
     }
 }
