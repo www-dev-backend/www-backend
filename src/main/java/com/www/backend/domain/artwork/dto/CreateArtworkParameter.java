@@ -14,7 +14,7 @@ public class CreateArtworkParameter {
     @NotBlank
     private String title;
 
-    @NotBlank
+    @NotNull
     private String description;
 
     @NotNull
