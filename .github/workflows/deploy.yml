@@ -129,4 +129,4 @@ jobs:
           rm target/backend-0.0.1-SNAPSHOT.jar
           aws s3 cp s3://www-backend/backend-0.0.1-SNAPSHOT.jar /home/ubuntu/www-backend/target
           kill -9 `pidof java`
-          nohup java -jar target/backend-0.0.1-SNAPSHOT.jar /dev/null 2>&1 &
+          (nohup java -jar target/backend-0.0.1-SNAPSHOT.jar 2> /dev/null &)
