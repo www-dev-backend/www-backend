@@ -13,7 +13,7 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/asset")
-@CrossOrigin(origins = "http://localhost:5173, http://localhost:3000, https://wwweb.kr, https://m.wwweb.kr")
+@CrossOrigin(origins = "http://localhost:5173, http://localhost:3000, http://localhost:3001, https://wwweb.kr, https://m.wwweb.kr")
 public class AssetController {
     private final AssetService assetService;
 

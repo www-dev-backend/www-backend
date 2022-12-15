@@ -4,6 +4,7 @@ import com.www.backend.common.exceptions.EntityNotFoundException;
 import com.www.backend.common.response.SuccessResponse;
 import com.www.backend.domain.artist.Artist;
 import com.www.backend.domain.artist.ArtistRepository;
+import com.www.backend.domain.artist.dto.ArtistDetailDto;
 import com.www.backend.domain.artist.mapper.ArtistMapper;
 import com.www.backend.domain.artwork.dto.*;
 import com.www.backend.domain.artwork.exceptions.ArtworkPolicyException;
@@ -100,10 +101,16 @@ public class ArtworkService {
 
 
     public SuccessResponse getArtworkDetail(long artworkId) {
-        Artwork artwork = artworkRepository.findById(artworkId)
-                .orElseThrow(() -> new EntityNotFoundException("요청한 ArtistID와 일치하는 아트워크가 없습니다."));
+        ArtistDetailDto artist = artistRepository.findById(artworkId)
+                .orElseThrow(() -> new EntityNotFoundException("요청한 Code와 일치하는 아티스트가 없습니다."));
 
-        return new SuccessResponse(artwork);
+        List<AssetRawDto> assets = assetRepository.findAllByArtistId(artist.getId())
+                .orElseThrow(() -> new EntityNotFoundException("요청한 ArtistID와 일치하는 에셋이 없습니다."));
+
+        Artwork artwork = artworkRepository.findByArtistId(artist.getId())
+                .orElseThrow(() -> new EntityNotFoundException("요청한 자원이 없습니다."));
+
+        return new SuccessResponse(new ArtworkWrapperDto(artworkMapper.toDto(artwork), artist, assets));
     }
 
     @Transactional

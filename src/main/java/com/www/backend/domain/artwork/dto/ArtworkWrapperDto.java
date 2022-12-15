@@ -1,5 +1,6 @@
 package com.www.backend.domain.artwork.dto;
 
+import com.www.backend.domain.artist.dto.ArtistDetailDto;
 import com.www.backend.domain.artist.dto.ArtistDto;
 import com.www.backend.domain.asset.dto.AssetRawDto;
 import lombok.Getter;
@@ -24,6 +25,13 @@ public class ArtworkWrapperDto {
         this.title = artwork.getTitle();
         this.description = artwork.getDescription();
         this.artist = artist;
+        this.assets = assets;
+    }
+
+    public ArtworkWrapperDto(ArtworkDto artwork, ArtistDetailDto artist, List<AssetRawDto> assets) {
+        this.title = artwork.getTitle();
+        this.description = artwork.getDescription();
+        this.artist = new ArtistDto(artist.getId(), artist.getGenre(), artist.getNickname(), artist.getProfileImage());
         this.assets = assets;
     }
 }
