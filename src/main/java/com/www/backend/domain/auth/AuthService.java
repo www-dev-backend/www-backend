@@ -23,6 +23,6 @@ public class AuthService {
         Artist artist = artistRepository.findByCode(code)
                 .orElseThrow(() -> new EntityNotFoundException("요청한 ID와 일치하는 아티스트가 없습니다."));
 
-        return new SuccessResponse(artistMapper.toDto(artist));
+        return new SuccessResponse(artist);
     }
 }
