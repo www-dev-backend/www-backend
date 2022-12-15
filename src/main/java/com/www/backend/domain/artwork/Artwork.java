@@ -23,7 +23,7 @@ public class Artwork extends BaseTimeEntity {
     @Column
     private String title;
 
-    @Column(length = 700)
+    @Column(length = 1000)
     private String description;
 
     @OneToOne(fetch = FetchType.LAZY)
