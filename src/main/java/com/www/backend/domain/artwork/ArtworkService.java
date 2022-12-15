@@ -5,10 +5,7 @@ import com.www.backend.common.response.SuccessResponse;
 import com.www.backend.domain.artist.Artist;
 import com.www.backend.domain.artist.ArtistRepository;
 import com.www.backend.domain.artist.mapper.ArtistMapper;
-import com.www.backend.domain.artwork.dto.ArtworkWrapperDto;
-import com.www.backend.domain.artwork.dto.AssetParameter;
-import com.www.backend.domain.artwork.dto.CreateArtworkParameter;
-import com.www.backend.domain.artwork.dto.UpdateArtworkParameter;
+import com.www.backend.domain.artwork.dto.*;
 import com.www.backend.domain.artwork.exceptions.ArtworkPolicyException;
 import com.www.backend.domain.artwork.mapper.ArtworkMapper;
 import com.www.backend.domain.asset.Asset;
@@ -85,7 +82,7 @@ public class ArtworkService {
     }
 
     @Transactional
-    public SuccessResponse createArtwork(String code, CreateArtworkParameter parameter){
+    public SuccessResponse createArtwork(String code, SingleArtworkParameter parameter){
         Artist artist = artistRepository.findByCode(code)
                 .orElseThrow(() -> new EntityNotFoundException("요청한 Code와 일치하는 아티스트가 없습니다."));
 

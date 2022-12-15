@@ -2,6 +2,7 @@ package com.www.backend.domain.artwork;
 
 import com.www.backend.common.response.SuccessResponse;
 import com.www.backend.domain.artwork.dto.CreateArtworkParameter;
+import com.www.backend.domain.artwork.dto.SingleArtworkParameter;
 import com.www.backend.domain.artwork.dto.UpdateArtworkParameter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,12 @@ import javax.validation.Valid;
 @CrossOrigin(origins = "http://localhost:3000, https://wwweb.kr, https://m.wwweb.kr")
 public class ArtworkController {
     private final ArtworkService artworkService;
+
+    @PostMapping
+    public ResponseEntity<SuccessResponse> createArtwork(@RequestHeader String code,
+                                                         @Valid @RequestBody SingleArtworkParameter parameter) {
+        return ResponseEntity.ok(artworkService.createArtwork(code, parameter));
+    }
 
     @PostMapping("/register")
     public ResponseEntity<SuccessResponse> registerArtwork(@RequestHeader String code,
