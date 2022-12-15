@@ -50,6 +50,15 @@ public class ArtistService {
         return new SuccessResponse(artistMapper.toDetailDto(artist));
     }
 
+    @Transactional
+    public SuccessResponse updateArtistByCode(String code, UpdateArtistParameter updateArtistParameter) {
+        Artist artist = artistRepository.findByCode(code)
+                .orElseThrow(() -> new EntityNotFoundException("요청한 ID와 일치하는 아티스트가 없습니다."));
+
+        artistMapper.updateToEntity(updateArtistParameter, artist);
+        return new SuccessResponse(artistMapper.toDetailDto(artist));
+    }
+
     public PaginationResponse getArtistsByPagination(SearchArtistRequest searchArtistRequest) {
         Pageable pageable = PageableUtils.of(searchArtistRequest.getPage(), searchArtistRequest.getTake());
 

@@ -54,6 +54,14 @@ public class ArtistController {
         return ResponseEntity.ok(artistService.getArtistDetail(artistId));
     }
 
+    @PutMapping
+    public ResponseEntity<SuccessResponse> updateArtistByCode(
+            @RequestHeader String code,
+            @Valid @RequestBody UpdateArtistParameter parameter
+    ) {
+        return ResponseEntity.ok(artistService.updateArtistByCode(code, parameter));
+    }
+
     @PutMapping("/{artistId}")
     public ResponseEntity<SuccessResponse> updateArtist(
             @PathVariable Long artistId,
