@@ -82,7 +82,10 @@ public class ArtistService {
         Artist artist = artistRepository.findByCode(code)
                 .orElseThrow(() -> new EntityNotFoundException());
 
-        return new SuccessResponse(artistMapper.toDto(artist));
+        List<AssetRawDto> assets = assetRepository.findAllByArtistId(artist.getId())
+                .orElseThrow(() -> new EntityNotFoundException());
+
+        return new SuccessResponse(new ArtistWrapperDto(artistMapper.toDetailDto(artist), assets));
     }
 
     @Transactional
