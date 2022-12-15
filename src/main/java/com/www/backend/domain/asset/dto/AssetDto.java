@@ -13,19 +13,18 @@ public class AssetDto {
 
     private String url;
 
-    private String artistGenre;
+    private Boolean isMain;
 
-    private String artistName;
-
-    private String artistDescription;
+    private long artistId;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private AssetArtistDto artist;
 
     @QueryProjection
-    public AssetDto(String type, String url, String artistGenre, String artistName, String artistDescription) {
+    public AssetDto(String type, String url, Boolean isMain, long artistId) {
         this.type = type;
         this.url = url;
-        this.artist = new AssetArtistDto(artistGenre, artistName, artistDescription);
+        this.isMain = isMain;
+        this.artist = new AssetArtistDto(artistId);
     }
 }

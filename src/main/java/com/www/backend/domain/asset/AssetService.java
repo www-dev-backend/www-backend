@@ -53,7 +53,7 @@ public class AssetService {
     }
 
     public SuccessResponse getMainAssets() {
-        List<AssetRawDto> assets = assetRepository.findMainAssets()
+        List<AssetDto> assets = assetRepository.findMainAssets()
                 .orElseThrow(() -> new EntityNotFoundException("요청한 자원이 없습니다."));
 
         return new SuccessResponse(assets);

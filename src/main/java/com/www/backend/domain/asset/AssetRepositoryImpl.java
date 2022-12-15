@@ -1,7 +1,9 @@
 package com.www.backend.domain.asset;
 
 import com.www.backend.common.repository.BaseRepositoryImpl;
+import com.www.backend.domain.asset.dto.AssetDto;
 import com.www.backend.domain.asset.dto.AssetRawDto;
+import com.www.backend.domain.asset.dto.QAssetDto;
 import com.www.backend.domain.asset.dto.QAssetRawDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
@@ -66,13 +68,14 @@ public class AssetRepositoryImpl extends BaseRepositoryImpl<Asset, Long> impleme
     }
 
     @Override
-    public Optional<List<AssetRawDto>> findMainAssets() {
+    public Optional<List<AssetDto>> findMainAssets() {
         return Optional.ofNullable(
-                query.select(new QAssetRawDto(
-                                asset.genre,
+                query.select(new QAssetDto(
                                 asset.type,
                                 asset.url,
-                                asset.isMain
+                                asset.isMain,
+                                asset.artist.id
+
                         ))
                         .from(asset)
                         .where(asset.isMain.eq(true))

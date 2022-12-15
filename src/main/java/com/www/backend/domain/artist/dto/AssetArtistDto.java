@@ -4,15 +4,9 @@ import lombok.Getter;
 
 @Getter
 public class AssetArtistDto {
-    private String genre;
+    private long id;
 
-    private String name;
-
-    private String description;
-
-    public AssetArtistDto(String genre, String name, String description) {
-        this.genre = genre;
-        this.name = name;
-        this.description = description;
+    public AssetArtistDto(long id) {
+        this.id = id;
     }
 }
