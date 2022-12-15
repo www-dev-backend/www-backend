@@ -37,8 +37,8 @@ spring:
   servlet:
     # 파일 업로드 사이즈 제한
     multipart:
-      max-file-size: 100MB
-      max-request-size: 100MB
+      max-file-size: 1024MB
+      max-request-size: 1024MB
 cloud:
   aws:
     s3:
