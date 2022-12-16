@@ -125,4 +125,14 @@ public class AssetRepositoryImpl extends BaseRepositoryImpl<Asset, Long> impleme
             }
         });
     }
+
+    @Override
+    public Optional<List<Asset>> findAssetsByArtistId(long artistId) {
+        return Optional.ofNullable(
+                query.selectFrom(asset)
+                        .where(asset.artist.id.eq(artistId), asset.deletedAt.isNull())
+                        .orderBy(asset.createdAt.desc())
+                        .fetch()
+        );
+    }
 }

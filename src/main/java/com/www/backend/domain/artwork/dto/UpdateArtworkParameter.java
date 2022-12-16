@@ -10,9 +10,9 @@ import java.util.List;
 
 @Getter @Setter
 public class UpdateArtworkParameter {
-    @NotBlank
+    @NotNull
     private String title;
-    @NotBlank
+    @NotNull
     private String description;
     @NotNull
     private List<AssetRawDto> assets;

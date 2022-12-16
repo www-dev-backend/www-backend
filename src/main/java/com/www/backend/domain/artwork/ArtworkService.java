@@ -73,8 +73,27 @@ public class ArtworkService {
         Artwork artwork = artworkRepository.findByArtistId(artist.getId())
                 .orElseThrow(() -> new EntityNotFoundException("요청한 ArtistID와 일치하는 아트워크가 없습니다."));
 
-        artworkMapper.updateToEntity(parameter, artwork);
-        return new SuccessResponse(artworkMapper.toDto(artwork));
+        List<Asset> assets = assetRepository.findAssetsByArtistId(artist.getId())
+                .orElseThrow(() -> new EntityNotFoundException("요청한 ArtistID와 일치하는 에셋이 없습니다."));
+
+        assetRepository.deleteAllInBatch((Iterable<Asset>) assets);
+
+        List<Asset> updatedAssets = parameter.getAssets().stream()
+                .map(assetMapper::toEntity)
+                .map(artist::add)
+                .collect(Collectors.toList());
+
+        assetRepository.batchInsertAssets(updatedAssets);
+
+        artworkMapper.updateToEntity(new ArtworkDto(parameter.getTitle(), parameter.getDescription()), artwork);
+
+        return new SuccessResponse(
+                new ArtworkWrapperDto(
+                        artworkMapper.toDto(artwork),
+                        artistMapper.toDto(artist),
+                        parameter.getAssets()
+                )
+        );
     }
 
     @Transactional

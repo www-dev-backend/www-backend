@@ -6,11 +6,13 @@ import com.www.backend.domain.artist.Artist;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Comment;
+import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.*;
 
 @Entity
 @Getter @Setter
+@SQLDelete(sql = "update assets set deleted_at=current_timestamp where id=?")
 @Table(name = "assets")
 public class Asset extends BaseTimeEntity {
     @Id

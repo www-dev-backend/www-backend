@@ -1,12 +1,8 @@
 package com.www.backend.domain.artwork.mapper;
 
 import com.www.backend.domain.artwork.Artwork;
-import com.www.backend.domain.artwork.dto.ArtworkDto;
-import com.www.backend.domain.artwork.dto.CreateArtworkParameter;
-import com.www.backend.domain.artwork.dto.SingleArtworkParameter;
-import com.www.backend.domain.artwork.dto.UpdateArtworkParameter;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
+import com.www.backend.domain.artwork.dto.*;
+import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
 public interface ArtworkMapper {
@@ -16,5 +12,7 @@ public interface ArtworkMapper {
 
     Artwork toEntity(SingleArtworkParameter parameter);
 
-    void updateToEntity(UpdateArtworkParameter updateArtworkParameter, @MappingTarget Artwork artwork);
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
+        nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
+    void updateToEntity(ArtworkDto parameter, @MappingTarget Artwork artwork);
 }
