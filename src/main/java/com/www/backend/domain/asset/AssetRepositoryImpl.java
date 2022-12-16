@@ -79,6 +79,7 @@ public class AssetRepositoryImpl extends BaseRepositoryImpl<Asset, Long> impleme
                         ))
                         .from(asset)
                         .where(asset.isMain.eq(true))
+                        .orderBy(asset.artist.id.asc())
                         .fetch()
         );
     }
@@ -95,6 +96,7 @@ public class AssetRepositoryImpl extends BaseRepositoryImpl<Asset, Long> impleme
                         ))
                         .from(asset)
                         .where(asset.genre.eq(genre), asset.isMain.eq(true))
+                        .orderBy(asset.artist.id.asc())
                         .fetch()
         );
     }

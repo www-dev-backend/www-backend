@@ -31,11 +31,6 @@ public class ArtworkService {
     private final ArtistRepository artistRepository;
     private final ArtistMapper artistMapper;
 
-//    @Transactional
-//    public SuccessResponse batchInsertData(String code, AssetParameter parameter) {
-//
-//    }
-
     @Transactional
     public SuccessResponse registerArtwork(String code, CreateArtworkParameter parameter){
         Artist artist = artistRepository.findByCode(code)
