@@ -57,4 +57,9 @@ public class ArtworkController {
         return ResponseEntity.ok(artworkService.remappingArtwork());
     }
 
+    @PostMapping("/remapping/profileImage")
+    public ResponseEntity<SuccessResponse> remappingProfileImage() {
+        return ResponseEntity.ok(artworkService.remappingArtistProfileImage());
+    }
+
 }

@@ -166,4 +166,19 @@ public class ArtworkService {
 
         return new SuccessResponse(assets);
     }
+
+    @Transactional
+    public SuccessResponse remappingArtistProfileImage() {
+        List<Artist> artists = artistRepository.findAll();
+
+        artists.stream().forEach((artist -> {
+            String profileImage = artist.getProfileImage();
+            String origin = "https://www-web-assets.s3.ap-northeast-2.amazonaws.com";
+            String replaced = "https://dp4qv0164jysa.cloudfront.net";
+
+            artist.setProfileImage(profileImage.replace(origin, replaced));
+        }));
+
+        return new SuccessResponse(artists);
+    }
 }
