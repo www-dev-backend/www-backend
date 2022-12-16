@@ -52,4 +52,9 @@ public class ArtworkController {
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 
+    @PostMapping("/remapping")
+    public ResponseEntity<SuccessResponse> remapping() {
+        return ResponseEntity.ok(artworkService.remappingArtwork());
+    }
+
 }

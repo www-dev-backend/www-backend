@@ -151,4 +151,19 @@ public class ArtworkService {
 
         artworkRepository.delete(artwork);
     }
+
+    @Transactional
+    public SuccessResponse remappingArtwork() {
+        List<Asset> assets = assetRepository.findAll();
+
+        assets.stream().forEach((asset -> {
+            String url = asset.getUrl();
+            String origin = "https://www-web-assets.s3.ap-northeast-2.amazonaws.com";
+            String replaced = "https://dp4qv0164jysa.cloudfront.net";
+
+            asset.setUrl(url.replace(origin, replaced));
+        }));
+
+        return new SuccessResponse(assets);
+    }
 }
